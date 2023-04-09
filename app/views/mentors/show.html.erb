@@ -1,0 +1,18 @@
+<h1><%= @mentor.first_name %> <%= @mentor.last_name %></h1>
+<p>Email: <%= @mentor.email %></p>
+<p>Projects:</p>
+<ul>
+  <% @mentor.projects.each do |project| %>
+    <li>
+      <%= link_to project.title, project_path(project) %>
+    </li>
+  <% end %>
+</ul>
+<p>Meetings:</p>
+<ul>
+  <% @mentor.meetings.each do |meeting| %>
+    <li>
+      <%= link_to meeting.title, meeting_path(meeting) %>
+    </li>
+  <% end %>
+</ul>

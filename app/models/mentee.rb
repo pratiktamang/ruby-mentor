@@ -3,7 +3,6 @@ class Mentee < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :validatable
-  has_person_name
 
   has_many :mentorships
   has_many :mentors, through: :mentorships

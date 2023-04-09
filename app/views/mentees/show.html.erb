@@ -1,0 +1,18 @@
+<h1><%= @mentee.first_name %> <%= @mentee.last_name %></h1>
+<p>Email: <%= @mentee.email %></p>
+<p>Projects:</p>
+<ul>
+  <% @mentee.projects.each do |project| %>
+    <li>
+      <%= link_to project.title, project_path(project) %>
+    </li>
+  <% end %>
+</ul>
+<p>Meetings:</p>
+<ul>
+  <% @mentee.meetings.each do |meeting| %>
+    <li>
+      <%= link_to meeting.title, meeting_path(meeting) %>
+    </li>
+  <% end %>
+</ul>
