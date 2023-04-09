@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
-  resources :meetings
-  resources :tasks
-  resources :projects
-  resources :mentorships
+  root "pages#homepage"
   devise_for :mentees, path: "mentees", controllers: {
     sessions: "mentees/sessions",
     registrations: "mentees/registrations"
@@ -29,5 +26,10 @@ Rails.application.routes.draw do
     end
   end
 
-  root "pages#homepage"
+  resources :meetings
+  resources :tasks
+  resources :projects
+  resources :mentorships
+  resources :mentors, only: [:new, :create, :edit, :update]
+  resources :mentees, only: [:new, :create, :edit, :update]
 end
