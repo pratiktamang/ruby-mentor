@@ -6,3 +6,6 @@ import { application } from "./application"
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import ProfileDropdownController from "./profile_dropdown_controller"
+application.register("profile-dropdown", ProfileDropdownController)
