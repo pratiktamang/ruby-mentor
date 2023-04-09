@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Mentorships</h1>
+
+<div id="mentorships">
+  <% @mentorships.each do |mentorship| %>
+    <%= render mentorship %>
+    <p>
+      <%= link_to "Show this mentorship", mentorship %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New mentorship", new_mentorship_path %>

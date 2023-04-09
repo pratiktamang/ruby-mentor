@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @mentorship %>
+
+<div>
+  <%= link_to "Edit this mentorship", edit_mentorship_path(@mentorship) %> |
+  <%= link_to "Back to mentorships", mentorships_path %>
+
+  <%= button_to "Destroy this mentorship", @mentorship, method: :delete %>
+</div>

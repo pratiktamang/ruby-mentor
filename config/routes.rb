@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :meetings
+  resources :tasks
+  resources :projects
+  resources :mentorships
   devise_for :mentees, path: "mentees", controllers: {
     sessions: "mentees/sessions",
     registrations: "mentees/registrations"

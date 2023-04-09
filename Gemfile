@@ -80,4 +80,5 @@ end
 
 gem "devise"
 
-gem "dockerfile-rails", ">= 1.2", :group => :development
+gem "dockerfile-rails", ">= 1.2", group: :development
+gem "name_of_person"
