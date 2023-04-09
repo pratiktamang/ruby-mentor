@@ -9,6 +9,7 @@ class Mentee < ApplicationRecord
   has_many :projects
   has_many :tasks, through: :projects
   has_many :meetings
+  has_one :mentee_profile, dependent: :destroy
 
   validates :first_name, presence: true
   validates :last_name, presence: true

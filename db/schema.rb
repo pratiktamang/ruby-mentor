@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_09_052121) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_09_060259) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -25,6 +25,26 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_09_052121) do
     t.index ["mentor_id"], name: "index_meetings_on_mentor_id"
   end
 
+  create_table "mentee_profiles", force: :cascade do |t|
+    t.bigint "mentee_id", null: false
+    t.string "country"
+    t.string "city"
+    t.string "workplace_url"
+    t.boolean "writing_ruby"
+    t.string "start_source"
+    t.string "start_detail"
+    t.string "underrepresented_group"
+    t.string "twitter"
+    t.string "github"
+    t.string "personal_site"
+    t.string "other_languages"
+    t.string "past_career"
+    t.text "mentoring_goals"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["mentee_id"], name: "index_mentee_profiles_on_mentee_id"
+  end
+
   create_table "mentees", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -33,10 +53,28 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_09_052121) do
     t.datetime "remember_created_at"
     t.string "first_name"
     t.string "last_name"
+    t.boolean "onboarded", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_mentees_on_email", unique: true
     t.index ["reset_password_token"], name: "index_mentees_on_reset_password_token", unique: true
+  end
+
+  create_table "mentor_profiles", force: :cascade do |t|
+    t.bigint "mentor_id", null: false
+    t.string "company_url"
+    t.integer "ruby_start_year"
+    t.string "country"
+    t.string "city"
+    t.string "twitter"
+    t.string "github"
+    t.string "personal_site"
+    t.text "past_workplaces"
+    t.boolean "previous_mentoring"
+    t.text "motivation"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["mentor_id"], name: "index_mentor_profiles_on_mentor_id"
   end
 
   create_table "mentors", force: :cascade do |t|
@@ -47,6 +85,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_09_052121) do
     t.datetime "remember_created_at"
     t.string "first_name"
     t.string "last_name"
+    t.boolean "onboarded", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_mentors_on_email", unique: true
@@ -86,6 +125,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_09_052121) do
 
   add_foreign_key "meetings", "mentees"
   add_foreign_key "meetings", "mentors"
+  add_foreign_key "mentee_profiles", "mentees"
+  add_foreign_key "mentor_profiles", "mentors"
   add_foreign_key "mentorships", "mentees"
   add_foreign_key "mentorships", "mentors"
   add_foreign_key "projects", "mentees"

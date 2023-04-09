@@ -4,11 +4,11 @@ class DeviseCreateMentees < ActiveRecord::Migration[7.0]
   def change
     create_table :mentees do |t|
       ## Database authenticatable
-      t.string :email,              null: false, default: ""
+      t.string :email, null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
 
       ## Recoverable
-      t.string   :reset_password_token
+      t.string :reset_password_token
       t.datetime :reset_password_sent_at
 
       ## Rememberable
@@ -35,10 +35,11 @@ class DeviseCreateMentees < ActiveRecord::Migration[7.0]
       t.string :first_name
       t.string :last_name
 
+      t.boolean :onboarded, default: false
       t.timestamps null: false
     end
 
-    add_index :mentees, :email,                unique: true
+    add_index :mentees, :email, unique: true
     add_index :mentees, :reset_password_token, unique: true
     # add_index :mentees, :confirmation_token,   unique: true
     # add_index :mentees, :unlock_token,         unique: true

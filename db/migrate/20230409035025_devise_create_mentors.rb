@@ -4,11 +4,11 @@ class DeviseCreateMentors < ActiveRecord::Migration[7.0]
   def change
     create_table :mentors do |t|
       ## Database authenticatable
-      t.string :email,              null: false, default: ""
+      t.string :email, null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
 
       ## Recoverable
-      t.string   :reset_password_token
+      t.string :reset_password_token
       t.datetime :reset_password_sent_at
 
       ## Rememberable
@@ -34,11 +34,12 @@ class DeviseCreateMentors < ActiveRecord::Migration[7.0]
 
       t.string :first_name
       t.string :last_name
+      t.boolean :onboarded, default: false
 
       t.timestamps null: false
     end
 
-    add_index :mentors, :email,                unique: true
+    add_index :mentors, :email, unique: true
     add_index :mentors, :reset_password_token, unique: true
     # add_index :mentors, :confirmation_token,   unique: true
     # add_index :mentors, :unlock_token,         unique: true

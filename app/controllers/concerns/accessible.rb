@@ -9,10 +9,18 @@ module Accessible
   def check_resource
     if mentor_signed_in?
       flash.clear
-      redirect_to(mentors_authenticated_root_path) and return
+      if current_mentor.onboarded
+        redirect_to(mentors_authenticated_root_path) and return
+      else
+        redirect_to(new_mentor_mentor_onboarding_path(current_mentor)) and return
+      end
     elsif mentee_signed_in?
       flash.clear
-      redirect_to(mentees_authenticated_root_path) and return
+      if current_mentee.onboarded
+        redirect_to(mentees_authenticated_root_path) and return
+      else
+        redirect_to(new_mentee_mentee_onboarding_path(current_mentee)) and return
+      end
     end
   end
 end

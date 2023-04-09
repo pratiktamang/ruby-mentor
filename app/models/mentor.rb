@@ -9,6 +9,7 @@ class Mentor < ApplicationRecord
   has_many :projects
   has_many :tasks, through: :projects
   has_many :meetings
+  has_one :mentor_profile, dependent: :destroy
 
   validates :first_name, presence: true
   validates :last_name, presence: true

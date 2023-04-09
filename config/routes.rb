@@ -30,6 +30,11 @@ Rails.application.routes.draw do
   resources :tasks
   resources :projects
   resources :mentorships
-  resources :mentors, only: [:new, :create, :edit, :update]
-  resources :mentees, only: [:new, :create, :edit, :update]
+  resources :mentors, only: [:new, :create, :edit, :update] do
+    resources :mentor_onboarding, only: [:new, :create], controller: "mentor_onboarding"
+  end
+
+  resources :mentees, only: [:new, :create, :edit, :update] do
+    resources :mentee_onboarding, only: [:new, :create], controller: "mentee_onboarding"
+  end
 end
