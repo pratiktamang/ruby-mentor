@@ -1,0 +1,2 @@
+module Mentees::DashboardHelper
+end
