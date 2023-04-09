@@ -11,18 +11,14 @@ Rails.application.routes.draw do
   }
 
   devise_scope :mentee do
-    authenticated :mentee do
-      namespace :mentees do
-        get "dashboard/index", as: :authenticated_root
-      end
+    namespace :mentees do
+      get "dashboard", as: :dashboard, to: "dashboard#index"
     end
   end
 
   devise_scope :mentor do
-    authenticated :mentor do
-      namespace :mentors do
-        get "dashboard/index", as: :authenticated_root
-      end
+    namespace :mentors do
+      get "dashboard", as: :dashboard, to: "dashboard#index"
     end
   end
 
@@ -31,10 +27,10 @@ Rails.application.routes.draw do
   resources :projects
   resources :mentorships
   resources :mentors, only: [:new, :create, :edit, :update] do
-    resources :mentor_onboarding, only: [:new, :create], controller: "mentor_onboarding"
+    resources :onboarding, only: [:new, :create], controller: "mentor_onboarding"
   end
 
   resources :mentees, only: [:new, :create, :edit, :update] do
-    resources :mentee_onboarding, only: [:new, :create], controller: "mentee_onboarding"
+    resources :onboarding, only: [:new, :create], controller: "mentee_onboarding"
   end
 end

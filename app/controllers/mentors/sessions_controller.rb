@@ -3,6 +3,8 @@
 class Mentors::SessionsController < Devise::SessionsController
   include Accessible
   skip_before_action :check_resource, only: :destroy
+  skip_before_action :authenticate
+
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
