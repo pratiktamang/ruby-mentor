@@ -1,6 +1,16 @@
 <div class="container mx-auto max-w-2xl mt-10">
   <h1 class="text-2xl font-bold mb-6 text-center pt-8">Tell us about yourself</h1>
-  <%= form_for :mentee_profile, url: mentee_mentee_onboarding_index_path(@mentee), class: "bg-white" do |f| %>
+  <%= form_for :mentee_profile, url: mentee_onboarding_index_path(@mentee), class: "bg-white" do |f| %>
+    <% if @mentee_profile.errors.any? %>
+      <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 mb-4 rounded relative" role="alert">
+        <strong class="font-bold">Please fix the following errors:</strong>
+        <ul>
+          <% @mentor_profile.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
     <div class="px-4 py-6 sm:p-8  space-y-8">
 
       <div class="sm:col-span-3">
@@ -19,7 +29,7 @@
           The nearest city that makes sense for you
         </p>
         <div class="mt-2">
-          <%= f.text_field :city, placeholder: "Brighton", class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+          <%= f.text_field :city, placeholder: "Brighton", required: true, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
         </div>
       </div>
 
@@ -29,24 +39,24 @@
           The URL of the place you're working
         </p>
         <div class="mt-2">
-          <%= f.text_field :workplace_url, required: true, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+          <%= f.text_field :workplace_url, required: true, required: true, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
         </div>
       </div>
 
       <div class="sm:col-span-3">
         <%= f.label :writing_ruby, " Are you writing Ruby there? *", class: "block text-lg font-medium leading-6 text-gray-900" %>
         <div class="mt-2">
-          <%= f.select :writing_ruby, [["Yes", true], ["No", false]], {}, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+          <%= f.select :writing_ruby, [["Yes", true], ["No", false]], {}, required: true, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
         </div>
       </div>
 
       <div class="sm:col-span-3">
-        <%= f.label :start_detail, "Where'd you get your start? *", class: "block text-lg font-medium leading-6 text-gray-900" %>
+        <%= f.label :start_source, "Where'd you get your start? *", required: true, class: "block text-lg font-medium leading-6 text-gray-900" %>
         <p class="text-md text-gray-500 mb-1">
           Which bootcamp? Which university? Self-taught?
         </p>
         <div class="mt-2">
-          <%= f.text_field :start_detail, required: true, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+          <%= f.text_field :start_source, required: true, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
         </div>
       </div>
 
@@ -112,7 +122,7 @@
       </div>
 
       <div class="flex justify-center border-t border-gray-900/10 px-4 py-4 sm:px-8">
-        <%= f.submit "Submit", class: "hover:cursor-pointer w-96 rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+        <%= f.submit "Submit", class: "hover:cursor-pointer w-96 rounded-md bg-red-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500" %>
       </div>
     </div>
   <% end %>

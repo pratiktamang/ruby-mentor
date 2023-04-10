@@ -1,15 +1,17 @@
 FactoryBot.define do
   factory :mentee_profile do
     mentee { nil }
-    company_url { "MyString" }
-    ruby_start_year { 1 }
     country { "MyString" }
     city { "MyString" }
+    workplace_url { "MyString" }
+    writing_ruby { false }
+    start_source { "MyString" }
+    underrepresented_group { false }
     twitter { "MyString" }
     github { "MyString" }
     personal_site { "MyString" }
-    past_workplaces { "MyText" }
-    previous_mentoring { false }
-    motivation { "MyText" }
+    other_languages { "MyString" }
+    past_career { "MyString" }
+    mentoring_goals { "MyText" }
   end
 end

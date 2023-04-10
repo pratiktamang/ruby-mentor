@@ -1,6 +1,16 @@
 <div class="container mx-auto max-w-2xl mt-10">
   <h1 class="text-2xl font-bold mb-6 text-center pt-8">Tell us about yourself</h1>
   <%= form_for :mentor_profile, url: mentor_onboarding_index_path(@mentor), class: "bg-white" do |f| %>
+    <% if @mentor_profile.errors.any? %>
+      <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 mb-4 rounded relative" role="alert">
+        <strong class="font-bold">Please fix the following errors:</strong>
+        <ul>
+          <% @mentor_profile.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
     <div class="px-4 py-6 sm:p-8  space-y-8">
       <div class="sm:col-span-3">
         <%= f.label :company_url, "Where do you work? *", class: "block text-lg font-medium leading-6 text-gray-900" %>
@@ -18,7 +28,7 @@
           Some folk will want to speak to someone who's within touching distance of the beginning of their careers, some will want grizzled veterans.
         </p>
         <div class="mt-2">
-          <%= f.number_field :ruby_start_year, placeholder: "2007", class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+          <%= f.number_field :ruby_start_year, required: true, placeholder: "2007", class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
         </div>
       </div>
 
@@ -28,7 +38,7 @@
           We'll try and match you geographically if we can, for local context and the most timezone flexibility!
         </p>
         <div class="mt-2">
-          <%= f.text_field :country, placeholder: "UK", class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+          <%= f.text_field :country, placeholder: "UK", required: true, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
         </div>
       </div>
 
@@ -39,7 +49,7 @@
           The nearest city that makes sense for you
         </p>
         <div class="mt-2">
-          <%= f.text_field :city, placeholder: "Brighton", class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+          <%= f.text_field :city, placeholder: "Brighton", required: true, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
         </div>
       </div>
 
@@ -77,7 +87,7 @@
       <div class="sm:col-span-3">
         <%= f.label :previous_mentoring, "Have you done any mentoring before? *", class: "block text-lg font-medium leading-6 text-gray-900" %>
         <div class="mt-2">
-          <%= f.select :previous_mentoring, [["Yes", true], ["No", false]], {}, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+          <%= f.select :previous_mentoring, [["Yes", true], ["No", false]], {}, required: true, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
         </div>
       </div>
 
@@ -87,12 +97,12 @@
           Anything else you might be useful for us know.
         </p>
         <div class="mt-2">
-          <%= f.text_area :motivation, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+          <%= f.text_area :motivation, required: true, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
         </div>
       </div>
 
       <div class="flex justify-center border-t border-gray-900/10 px-4 py-4 sm:px-8">
-        <%= f.submit "Submit", class: "hover:cursor-pointer w-96 rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+        <%= f.submit "Submit", class: "hover:cursor-pointer w-96 rounded-md bg-red-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500" %>
       </div>
   <% end %>
 </div>

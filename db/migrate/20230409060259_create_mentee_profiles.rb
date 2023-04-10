@@ -7,7 +7,6 @@ class CreateMenteeProfiles < ActiveRecord::Migration[7.0]
       t.string :workplace_url
       t.boolean :writing_ruby
       t.string :start_source
-      t.string :start_detail
       t.string :underrepresented_group
       t.string :twitter
       t.string :github

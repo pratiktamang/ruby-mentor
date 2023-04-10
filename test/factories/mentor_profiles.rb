@@ -1,18 +1,15 @@
 FactoryBot.define do
   factory :mentor_profile do
     mentor { nil }
+    company_url { "MyString" }
+    ruby_start_year { 1 }
     country { "MyString" }
     city { "MyString" }
-    workplace_url { "MyString" }
-    writing_ruby { false }
-    start_source { "MyString" }
-    start_detail { "MyString" }
-    underrepresented_group { false }
     twitter { "MyString" }
     github { "MyString" }
     personal_site { "MyString" }
-    other_languages { "MyString" }
-    past_career { "MyString" }
-    mentoring_goals { "MyText" }
+    past_workplaces { "MyText" }
+    previous_mentoring { false }
+    motivation { "MyText" }
   end
 end
