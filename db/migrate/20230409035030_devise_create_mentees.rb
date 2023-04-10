@@ -36,6 +36,7 @@ class DeviseCreateMentees < ActiveRecord::Migration[7.0]
       t.string :last_name
 
       t.boolean :onboarded, default: false
+      t.boolean :seeking_mentorhip, default: false
       t.timestamps null: false
     end
 

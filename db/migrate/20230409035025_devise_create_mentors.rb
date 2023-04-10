@@ -35,6 +35,7 @@ class DeviseCreateMentors < ActiveRecord::Migration[7.0]
       t.string :first_name
       t.string :last_name
       t.boolean :onboarded, default: false
+      t.boolean :available, default: false
 
       t.timestamps null: false
     end

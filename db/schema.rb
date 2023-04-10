@@ -32,7 +32,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_09_060259) do
     t.string "workplace_url"
     t.boolean "writing_ruby"
     t.string "start_source"
-    t.string "start_detail"
     t.string "underrepresented_group"
     t.string "twitter"
     t.string "github"
@@ -54,6 +53,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_09_060259) do
     t.string "first_name"
     t.string "last_name"
     t.boolean "onboarded", default: false
+    t.boolean "seeking_mentorhip", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_mentees_on_email", unique: true
@@ -86,6 +86,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_09_060259) do
     t.string "first_name"
     t.string "last_name"
     t.boolean "onboarded", default: false
+    t.boolean "available", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_mentors_on_email", unique: true
