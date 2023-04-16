@@ -24,6 +24,18 @@ def seed_mentee
   mentee.save!
 end
 
+def seed_admin
+  admin = Admin.new do |a|
+    a.first_name = "Admin"
+    a.last_name = "User"
+    a.email = "pratik+admin@example.com"
+    a.password = "password"
+    m.password_confirmation = "password"
+  end
+
+  admin.save!
+end
+
 def elapsed = Benchmark.measure do
   puts "Seeding development database..."
   seed_mentor

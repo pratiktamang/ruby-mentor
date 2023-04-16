@@ -7,20 +7,15 @@ module Accessible
   protected
 
   def check_resource
+    flash.clear
     if mentor_signed_in?
-      flash.clear
-      if current_mentor.onboarded
-        redirect_to(mentors_dashboard_path) and return
-      else
-        redirect_to(new_mentor_onboarding_path(current_mentor)) and return
-      end
+      redirect_to mentors_dashboard_path
     elsif mentee_signed_in?
-      flash.clear
-      if current_mentee.onboarded
-        redirect_to(mentees_dashboard_path) and return
-      else
-        redirect_to(new_mentee_onboarding_path(current_mentee)) and return
-      end
+      redirect_to mentees_dashboard_path
+    elsif admin_signed_in?
+      redirect_to admin_dashboard_path
+    else
+      redirect_to root_path
     end
   end
 end

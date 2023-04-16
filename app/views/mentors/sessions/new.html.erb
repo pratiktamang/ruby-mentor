@@ -10,7 +10,7 @@
   <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
     <div class="bg-white px-4 py-8 shadow sm:rounded-lg sm:px-10">
       <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: "space-y-6") do |f| %>
-        <%= render "mentees/shared/error_messages", resource: resource %>
+        <%= render "mentors/shared/error_messages", resource: resource %>
 
         <div class="field">
           <%= f.label :email, class: "block text-sm font-medium leading-6 text-gray-900" %>

@@ -5,7 +5,7 @@
       <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 mb-4 rounded relative" role="alert">
         <strong class="font-bold">Please fix the following errors:</strong>
         <ul>
-          <% @mentor_profile.errors.full_messages.each do |msg| %>
+          <% @mentee_profile.errors.full_messages.each do |msg| %>
             <li><%= msg %></li>
           <% end %>
         </ul>
@@ -61,7 +61,7 @@
       </div>
 
       <div class="sm:col-span-3">
-        <%= f.label :underrepresented_group, "Would you consider yourself in an underrepresented group?", class: "block text-lg font-medium leading-6 text-gray-900" %>
+        <%= f.label :underrepresented_group, "Would you consider yourself in an underrepresented group? *", class: "block text-lg font-medium leading-6 text-gray-900" %>
         <p class="text-md text-gray-500 mb-1">
           We're prioritising these folks for mentorship, but the plan is for everyone to get a mentor.
         </p>
@@ -97,12 +97,12 @@
           I'm in the UK, so I'll be managing this programme in English, but if you speak other languages, that might be useful!
         </p>
         <div class="mt-2">
-          <%= f.text_field :other_languages, required: true, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+          <%= f.text_field :other_languages, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
         </div>
       </div>
 
       <div class="sm:col-span-3">
-        <%= f.label :past_career, "What did you do before you became a programmer?", class: "block text-lg font-medium leading-6 text-gray-900" %>
+        <%= f.label :past_career, "What did you do before you became a programmer?*", class: "block text-lg font-medium leading-6 text-gray-900" %>
         <p class="text-md text-gray-500 mb-1">
           I'm in the UK, so I'll be managing this programme in English, but if you speak other languages, that might be useful!
         </p>
@@ -117,7 +117,7 @@
           What sort of experience are you looking to draw on? Are you looking for technical help? Interviewing skills? Working out whether your current job is right for you?
         </p>
         <div class="mt-2">
-          <%= f.text_field :mentoring_goals, required: true, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+          <%= f.text_area :mentoring_goals, required: true, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
         </div>
       </div>
 

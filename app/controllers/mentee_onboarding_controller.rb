@@ -12,7 +12,6 @@ class MenteeOnboardingController < ApplicationController
       @mentee.update_attribute(:onboarded, true)
       redirect_to mentees_dashboard_path
     else
-      puts @mentee_profile.errors.full_messages
       render :new, status: :unprocessable_entity
     end
   end

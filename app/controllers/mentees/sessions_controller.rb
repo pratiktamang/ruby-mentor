@@ -2,8 +2,7 @@
 
 class Mentees::SessionsController < Devise::SessionsController
   include Accessible
-  skip_before_action :check_resource, only: :destroy
-  skip_before_action :authenticate
+  skip_before_action :check_resource, only: [:new, :create, :destroy]
 
   # before_action :configure_sign_in_params, only: [:create]
 
@@ -13,9 +12,13 @@ class Mentees::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-  # def create
-  #   super
-  # end
+  def create
+    if mentee_signed_in?
+      redirect_to mentees_dashboard_path
+    else
+      super
+    end
+  end
 
   # DELETE /resource/sign_out
   # def destroy

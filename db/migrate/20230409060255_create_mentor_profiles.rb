@@ -3,7 +3,7 @@ class CreateMentorProfiles < ActiveRecord::Migration[7.0]
     create_table :mentor_profiles do |t|
       t.references :mentor, null: false, foreign_key: true
       t.string :company_url
-      t.integer :ruby_start_year
+      t.date :ruby_start_year
       t.string :country
       t.string :city
       t.string :twitter

@@ -12,7 +12,6 @@ class MentorOnboardingController < ApplicationController
       @mentor.update_attribute(:onboarded, true)
       redirect_to mentors_dashboard_path
     else
-      puts @mentor_profile.errors.full_messages
       render :new, status: :unprocessable_entity
     end
   end

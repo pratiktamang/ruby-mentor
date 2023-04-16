@@ -1,8 +1,14 @@
 Rails.application.routes.draw do
   root "pages#homepage"
+
   devise_for :mentees, path: "mentees", controllers: {
     sessions: "mentees/sessions",
     registrations: "mentees/registrations"
+  }
+
+  devise_for :admins, path: "admins", controllers: {
+    sessions: "admins/sessions",
+    registrations: "admins/registrations"
   }
 
   devise_for :mentors, path: "mentors", controllers: {
@@ -20,6 +26,15 @@ Rails.application.routes.draw do
     namespace :mentors do
       get "dashboard", as: :dashboard, to: "dashboard#index"
     end
+  end
+
+  namespace :admin do
+    resources :mentors
+    resources :mentees
+    resources :matches
+    get "dashboard", to: "dashboard#index"
+    post "run_match_service", to: "dashboard#run_match_service"
+    post "approve_matches", to: "matches#approve_matches"
   end
 
   resources :meetings

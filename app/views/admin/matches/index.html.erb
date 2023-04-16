@@ -1,0 +1,26 @@
+<h1>Matches</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Mentee</th>
+      <th>Mentor</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @matches.each do |match| %>
+      <tr>
+        <td><%= match[:mentee].name %></td>
+        <td><%= match[:mentor].name %></td>
+        <td>
+          <%= link_to 'Edit', edit_admin_match_path(match[:mentee].id) %> |
+          <%= link_to 'Delete', admin_match_path(match[:mentee].id),
+            method: :delete,
+            data: { confirm: 'Are you sure you want to remove this match?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= button_to 'Approve Matches', admin_approve_matches_path, method: :post %>
