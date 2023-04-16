@@ -12,9 +12,13 @@ class Admins::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-  # def create
-  #   super
-  # end
+  def create
+    if admin_signed_in?
+      redirect_to admin_dashboard_path
+    else
+      super
+    end
+  end
 
   # DELETE /resource/sign_out
   # def destroy
