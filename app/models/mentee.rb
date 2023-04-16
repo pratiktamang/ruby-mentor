@@ -16,4 +16,8 @@ class Mentee < ApplicationRecord
   validates :email, presence: true, uniqueness: true
 
   scope :seeking_mentorship, -> { where(seeking: true) }
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 end

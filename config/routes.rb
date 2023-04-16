@@ -28,7 +28,7 @@ Rails.application.routes.draw do
     end
   end
 
-  namespace :admin do
+  namespace :admins do
     resources :mentors
     resources :mentees
     resources :matches

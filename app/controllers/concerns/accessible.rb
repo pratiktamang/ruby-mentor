@@ -13,7 +13,7 @@ module Accessible
     elsif mentee_signed_in?
       redirect_to mentees_dashboard_path
     elsif admin_signed_in?
-      redirect_to admin_dashboard_path
+      redirect_to admins_dashboard_path
     else
       redirect_to root_path
     end

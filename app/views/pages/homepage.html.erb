@@ -26,7 +26,7 @@
       <% elsif mentee_signed_in? %>
         <%= link_to "Dashboard", mentees_dashboard_path, class:"bg-red-500 p-2 text-white rounded-md p-1 ml-8 text-sm font-semibold leading-6 text-gray-900" %>
       <% elsif admin_signed_in? %>
-        <%= link_to "Dashboard", admin_dashboard_path, class:"bg-red-500 p-2 text-white rounded-md p-1 ml-8 text-sm font-semibold leading-6 text-gray-900" %>
+        <%= link_to "Dashboard", admins_dashboard_path, class:"bg-red-500 p-2 text-white rounded-md p-1 ml-8 text-sm font-semibold leading-6 text-gray-900" %>
       <% else %>
         <div class="flex flex-col ml-8 mt-6">
           <div class="hidden lg:flex lg:flex-1 lg:justify-end">

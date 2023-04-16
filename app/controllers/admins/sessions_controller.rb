@@ -14,7 +14,7 @@ class Admins::SessionsController < Devise::SessionsController
   # POST /resource/sign_in
   def create
     if admin_signed_in?
-      redirect_to admin_dashboard_path
+      redirect_to admins_dashboard_path
     else
       super
     end

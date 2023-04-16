@@ -1,0 +1,5 @@
+<%= turbo_frame_tag "admin_content" do %>
+  <% @mentors.each do |mentor| %>
+    <%= render partial: 'admin/mentors/mentor', locals: { mentor: mentor } %>
+  <% end %>
+<% end %>

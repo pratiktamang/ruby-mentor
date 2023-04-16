@@ -1,0 +1,21 @@
+<% if mentor.onboarded %>
+  <tr>
+    <td class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-0"><%= mentor.created_at %></td>
+    <td class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-0"><%= mentor.full_name %></td>
+    <td class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-0"><%= mentor.email %></td>
+    <td class="hidden px-3 py-4 text-sm text-gray-500 lg:table-cell"><%= mentor.mentor_profile&.country %></td>
+    <td class="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell"><%= mentor.mentor_profile&.city %></td>
+    <td class="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell"><%= mentor.mentor_profile&.ruby_start_year %></td>
+    <td class="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell"><%= mentor.mentor_profile&.previous_mentoring == true ? "yes" : "no" %></td>
+    <td class="py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
+      <a href="#" class="text-indigo-600 hover:text-indigo-900">View</a>
+    </td>
+  </tr>
+<% else %>
+  <tr>
+    <td class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-0"><%= mentor.created_at %></td>
+    <td class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-0"><%= mentor.full_name %></td>
+    <td class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-0"><%= mentor.email %></td>
+    <td>not onboarded</td>
+  </tr>
+<% end %>

@@ -16,4 +16,8 @@ class Mentor < ApplicationRecord
   validates :email, presence: true, uniqueness: true
 
   scope :available, -> { where(available: true) }
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 end

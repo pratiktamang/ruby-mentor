@@ -1,4 +1,4 @@
-class Admin::MatchesController < ApplicationController
+class Admins::MatchesController < ApplicationController
   def index
     @matches = session[:matches] ? session[:matches].map { |m| {mentee: Mentee.find(m[:mentee_id]), mentor: Mentor.find(m[:mentor_id])} } : Match.all
   end
