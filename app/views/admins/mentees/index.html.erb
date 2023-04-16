@@ -1,25 +1,83 @@
-<%= turbo_frame_tag "admin_content" do %>
-  <div class="-mx-4 mt-8 sm:-mx-0">
-    <table class="min-w-full divide-y divide-gray-300">
-      <thead>
-        <tr>
-          <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Signed Up</th>
-          <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell">Name</th>
-          <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell">Email</th>
-          <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell">Country</th>
-          <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell">City</th>
-          <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:table-cell">Ruby Start date</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Previous Mentorship</th>
-          <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-0">
-            <span class="sr-only">Edit</span>
-          </th>
-        </tr>
-      </thead>
-      <tbody class="divide-y divide-gray-200 bg-white">
-        <% @mentees.each do |mentee| %>
-          <%= render "mentee", mentee: mentee %>
-        <% end %>
-      </tbody>
-    </table>
+<div class="min-h-full">
+  <%= render "admins/shared/navbar" %>
+  <div class="py-4">
+    <header>
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <h1 class="text-3xl font-bold leading-tight tracking-tight text-gray-900">Dashboard</h1>
+      </div>
+    </header>
+    <main>
+      <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <div class="border-b border-gray-200 pb-5 sm:pb-0">
+          <div class="mt-3 sm:mt-4">
+            <div class="sm:hidden">
+              <select id="current-tab" name="current-tab" class="block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                <% active_tab = params[:tab] || "mentors" %>
+
+                <%= link_to 'Mentors',
+                  admins_mentors_path(tab: "mentors"),
+                  class: "#{active_tab == "mentors" ? "border-red-500 text-gray-900 " : "border-transparent text-gray-500"} hover:border-gray-300 hover:text-gray-700 inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium",
+                  "aria-current": ("page" if active_tab == "mentors") %>
+
+                <%= link_to 'Mentees',
+                  admins_mentees_path(tab: "mentees"),
+                  class: "#{active_tab == "mentees" ? "border-red-500 text-gray-900 " : "border-transparent text-gray-500"} hover:border-gray-300 hover:text-gray-700 inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium",
+                  "aria-current": ("page" if active_tab == "mentees") %>
+
+                <%= link_to 'Matches',
+                  admins_matches_path(tab: "matches"),
+                  class: "#{active_tab == "matches" ? "border-red-500 text-gray-900 " : "border-transparent text-gray-500"} hover:border-gray-300 hover:text-gray-700 inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium",
+                  "aria-current": ("page" if active_tab == "matches") %>
+              </select>
+            </div>
+            <div class="hidden sm:block">
+              <nav class="-mb-px flex space-x-8">
+                <% active_tab = params[:tab] || "mentors" %>
+
+                <%= link_to 'Mentors',
+                  admins_mentors_path(tab: "mentors"),
+                  class: "#{active_tab == "mentors" ? "border-red-500 text-gray-900 " : "border-transparent text-gray-500"} hover:border-gray-300 hover:text-gray-700 inline-flex items-center border-b-2 px-1 pb-2 pt-1 text-sm font-medium",
+                  "aria-current": ("page" if active_tab == "mentors") %>
+
+                <%= link_to 'Mentees',
+                  admins_mentees_path(tab: "mentees"),
+                  class: "#{active_tab == "mentees" ? "border-red-500 text-gray-900 " : "border-transparent text-gray-500"} hover:border-gray-300 hover:text-gray-700 inline-flex items-center border-b-2 px-1 pb-2 pt-1 text-sm font-medium",
+                  "aria-current": ("page" if active_tab == "mentees") %>
+
+                <%= link_to 'Matches',
+                  admins_matches_path(tab: "matches"),
+                  class: "#{active_tab == "matches" ? "border-red-500 text-gray-900 " : "border-transparent text-gray-500"} hover:border-gray-300 hover:text-gray-700 inline-flex items-center border-b-2 px-1 pb-2 pt-1 text-sm font-medium",
+                  "aria-current": ("page" if active_tab == "matches") %>
+              </nav>
+            </div>
+          </div>
+        </div>
+          <%= turbo_frame_tag "admin_content" do %>
+            <div class="-mx-4 mt-8 sm:-mx-0">
+              <table class="min-w-full divide-y divide-gray-300">
+                <thead>
+                  <tr>
+                    <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Signed Up</th>
+                    <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell">Name</th>
+                    <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell">Email</th>
+                    <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell">Country</th>
+                    <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell">City</th>
+                    <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:table-cell">Writing Ruby</th>
+                    <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:table-cell">Underrepresented Group</th>
+                    <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-0">
+                      <span class="sr-only">Edit</span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200 bg-white">
+                  <% @mentees.each do |mentee| %>
+                    <%= render "mentee", mentee: mentee %>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          <% end %>
+      </div>
+    </main>
   </div>
-<% end %>
+</div>
