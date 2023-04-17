@@ -3,6 +3,7 @@ class Mentors::DashboardController < ApplicationController
   before_action :ensure_onboarded
 
   def index
+    @mentor = current_mentor
   end
 
   private

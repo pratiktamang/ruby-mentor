@@ -44,8 +44,9 @@ Rails.application.routes.draw do
   resources :mentors, only: [:new, :create, :edit, :update] do
     resources :onboarding, only: [:new, :create], controller: "mentor_onboarding"
   end
-
   resources :mentees, only: [:new, :create, :edit, :update] do
     resources :onboarding, only: [:new, :create], controller: "mentee_onboarding"
   end
+  resources :mentor_profiles
+  resources :mentee_profiles
 end

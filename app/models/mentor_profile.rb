@@ -7,4 +7,6 @@ class MentorProfile < ApplicationRecord
   validates :city, presence: true
   validates :previous_mentoring, presence: true
   validates :motivation, presence: true
+
+  accepts_nested_attributes_for :mentor
 end
