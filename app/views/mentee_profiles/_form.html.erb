@@ -1,17 +1,17 @@
 <%= form_for @mentee_profile, url: mentee_profile_path(@mentee), class: "bg-white" do |f| %>
   <div class="px-4 py-6 sm:p-8  space-y-8">
-    <%= f.fields_for :mentor do |mentor_fields| %>
+    <%= f.fields_for :mentee do |mentee_fields| %>
       <div class="sm:col-span-3">
-        <%= mentor_fields.label :first_name, "First Name", class: "block text-lg font-medium leading-6 text-gray-900" %>
+        <%= mentee_fields.label :first_name, "First Name", class: "block text-lg font-medium leading-6 text-gray-900" %>
         <div class="mt-2">
-          <%= mentor_fields.text_field :first_name, placeholder: "John Smith", class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+          <%= mentee_fields.text_field :first_name, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
         </div>
       </div>
 
       <div class="sm:col-span-3">
-        <%= mentor_fields.label :last_name, "Last Name", class: "block text-lg font-medium leading-6 text-gray-900" %>
+        <%= mentee_fields.label :last_name, "Last Name", class: "block text-lg font-medium leading-6 text-gray-900" %>
         <div class="mt-2">
-          <%= mentor_fields.text_field :last_name, placeholder: "John Smith", class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+          <%= mentee_fields.text_field :last_name, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
         </div>
       </div>
     <% end %>

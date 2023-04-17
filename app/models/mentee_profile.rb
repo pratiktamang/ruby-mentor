@@ -8,4 +8,6 @@ class MenteeProfile < ApplicationRecord
   validates :start_source, presence: true
   validates :underrepresented_group, presence: true
   validates :mentoring_goals, presence: true
+
+  accepts_nested_attributes_for :mentee
 end

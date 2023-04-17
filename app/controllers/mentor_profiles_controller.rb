@@ -11,7 +11,7 @@ class MentorProfilesController < ApplicationController
     @mentor_profile = @mentor.mentor_profile
 
     if @mentor_profile.update!(mentor_profile_params)
-      redirect_to edit_mentor_profile_path(mentor_id: @mentor.id), notice: "Your profile was updated successfully."
+      redirect_to edit_mentor_profile_path(@mentor), notice: "Your profile was updated successfully."
     else
       render :edit, status: :unprocessable_entity
     end
