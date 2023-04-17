@@ -1,11 +1,15 @@
 class MentorProfilesController < ApplicationController
   before_action :authenticate_mentor!
-  before_action :set_mentor_profile
 
   def edit
+    @mentor = Mentor.find(params[:id])
+    @mentor_profile = @mentor.mentor_profile
   end
 
   def update
+    @mentor = Mentor.find(params[:id])
+    @mentor_profile = @mentor.mentor_profile
+
     if @mentor_profile.update!(mentor_profile_params)
       redirect_to edit_mentor_profile_path(mentor_id: @mentor.id), notice: "Your profile was updated successfully."
     else
@@ -15,27 +19,20 @@ class MentorProfilesController < ApplicationController
 
   private
 
-  def set_mentor_profile
-    @mentor = Mentor.find(params[:id])
-    @mentor_profile = @mentor.mentor_profile
-  end
-
-  def set_mentor
-  end
-
   def mentor_profile_params
     params.require(:mentor_profile).permit(
-      :company_url,
-      :ruby_start_year,
       :country,
       :city,
+      :workplace_url,
+      :writing_ruby,
+      :start_source,
       :twitter,
       :github,
       :personal_site,
-      :past_workplaces,
-      :previous_mentoring,
-      :motivation,
-      mentor_attributes: [:id, :first_name, :last_name, :email]
+      :other_languages,
+      :past_career,
+      :mentoring_goal,
+      mentor_attributes: [:id, :first_name, :last_name]
     )
   end
 end

@@ -1,5 +1,5 @@
 <%= form_for @mentor_profile, url: mentor_profile_path(@mentor), class: "bg-white" do |f| %>
-  <div class="px-4 py-6 sm:p-8  space-y-8">
+  <div class="px-4 py-2 sm:p-8 space-y-8">
 
     <%= f.fields_for :mentor do |mentor_fields| %>
       <div class="sm:col-span-3">
@@ -28,16 +28,6 @@
     </div>
 
     <div class="sm:col-span-3">
-      <%= f.label :ruby_start_year, "Year you started programming in Ruby", class: "block text-lg font-medium leading-6 text-gray-900" %>
-      <p class="text-md text-gray-500 mb-1">
-        Some folk will want to speak to someone who's within touching distance of the beginning of their careers, some will want grizzled veterans.
-      </p>
-      <div class="mt-2">
-        <%= f.date_field :ruby_start_year, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
-      </div>
-    </div>
-
-    <div class="sm:col-span-3">
       <%= f.label :country, "Country", class: "block text-lg font-medium leading-6 text-gray-900" %>
       <p class="text-md text-gray-500 mb-1">
         We'll try and match you geographically if we can, for local context and the most timezone flexibility!
@@ -46,7 +36,6 @@
         <%= f.text_field :country, placeholder: "UK", class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
       </div>
     </div>
-
 
     <div class="sm:col-span-3">
       <%= f.label :city, "City", class: "block text-lg font-medium leading-6 text-gray-900" %>
@@ -73,7 +62,7 @@
     </div>
 
     <div class="sm:col-span-3">
-      <%= f.label :personal_site, "Do you have a personal site?", class: "block text-lg font-medium leading-6 text-gray-900" %>
+      <%= f.label :personal_site, "Personal site url", class: "block text-lg font-medium leading-6 text-gray-900" %>
       <div class="mt-2">
         <%= f.text_field :personal_site, placeholder: "https://github.com/username", class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
       </div>
@@ -86,23 +75,6 @@
       </p>
       <div class="mt-2">
         <%= f.text_field :past_workplaces, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
-      </div>
-    </div>
-
-    <div class="sm:col-span-3">
-      <%= f.label :previous_mentoring, "Have you done any mentoring before?", class: "block text-lg font-medium leading-6 text-gray-900" %>
-      <div class="mt-2">
-        <%= f.select :previous_mentoring, [["Yes", true], ["No", false]], {}, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
-      </div>
-    </div>
-
-    <div class="sm:col-span-3">
-      <%= f.label :motivation, "Why are you doing this?", class: "block text-lg font-medium leading-6 text-gray-900" %>
-      <p class="text-md text-gray-500 mb-1">
-        Anything else you might be useful for us know.
-      </p>
-      <div class="mt-2">
-        <%= f.text_area :motivation, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
       </div>
     </div>
 
