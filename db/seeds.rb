@@ -35,7 +35,7 @@ def seed_admin
 end
 
 def seed_onboarded_mentees
-  100.times do |m|
+  25.times do |m|
     mentee = Mentee.new do |m|
       m.first_name = Faker::Name.first_name
       m.last_name = Faker::Name.last_name
@@ -50,7 +50,7 @@ def seed_onboarded_mentees
 end
 
 def seed_onboarded_mentors
-  100.times do |m|
+  25.times do |m|
     mentor = Mentor.new do |m|
       m.first_name = Faker::Name.first_name
       m.last_name = Faker::Name.last_name
