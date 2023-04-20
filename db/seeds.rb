@@ -26,11 +26,9 @@ end
 
 def seed_admin
   admin = Admin.new do |a|
-    a.first_name = "Admin"
-    a.last_name = "User"
     a.email = "pratik+admin@example.com"
     a.password = "password"
-    m.password_confirmation = "password"
+    a.password_confirmation = "password"
   end
 
   admin.save!
@@ -69,21 +67,20 @@ end
 def seed_mentor_profiles
   mentors = Mentor.all
 
+  years = [1990, 1994, 1995, 1998, 2002, 2003, 2004, 2008, 2012, 2020]
   mentors.each do |mentor|
-    mentor_profile = MentorProfile.new do |p|
-      p.mentor = mentor
-      p.company_url = Faker::Internet.url,
-        p.ruby_start_year = rand(1990..2015),
-        p.country = Faker::Address.country,
-        p.city = Faker::Address.city,
-        p.twitter = Faker::Internet.user_name,
-        p.github = Faker::Internet.user_name,
-        p.personal_site = Faker::Internet.url,
-        p.past_workplaces = Faker::Lorem.paragraph(2),
-        p.previous_mentoring = rand([true, false]),
-        p.mentoring = Faker::Lorem.paragraph(2)
-    end
-    mentor_profile.save!
+    mentor.create_mentor_profile(
+      ruby_start_year: years.sample.to_s,
+      country: Faker::Address.country,
+      city: Faker::Address.city,
+      twitter: Faker::Internet.user_name,
+      github: Faker::Internet.user_name,
+      personal_site: Faker::Internet.url,
+      past_workplaces: Faker::Lorem.sentence,
+      previous_mentoring: [true, false].sample,
+      motivation: Faker::Lorem.sentence,
+      company_url: Faker::Internet.url
+    )
   end
 end
 
@@ -91,21 +88,20 @@ def seed_mentee_profiles
   mentees = Mentee.all
 
   mentees.each do |mentee|
-    mentee_profile = MenteeProfile.new do |p|
-      p.country = Faker::Address.country,
-        p.city = Faker::Address.city,
-        p.workplace_url = Faker::Internet.url,
-        p.writing_ruby = rand([true, false]),
-        p.start_source = Faker::Lorem.paragraph(2),
-        p.underrepresented_group = Faker::Lorem.paragraph(2),
-        p.twitter = Faker::Internet.user_name,
-        p.github = Faker::Internet.user_name,
-        p.personal_site = Faker::Internet.url,
-        p.other_languages = Faker::Lorem.paragraph(2),
-        p.past_career = Faker::Lorem.paragraph(2),
-        p.mentoring_goals = Faker::Lorem.paragraph(2)
-    end
-    mentee_profile.save!
+    mentee.create_mentee_profile(
+      country: Faker::Address.country,
+      city: Faker::Address.city,
+      workplace_url: Faker::Internet.url,
+      writing_ruby: [true, false].sample,
+      start_source: Faker::Lorem.sentence,
+      underrepresented_group: Faker::Lorem.sentence,
+      twitter: Faker::Internet.user_name,
+      github: Faker::Internet.user_name,
+      personal_site: Faker::Internet.url,
+      other_languages: Faker::Lorem.sentence,
+      past_career: Faker::Lorem.sentence,
+      mentoring_goals: Faker::Lorem.sentence
+    )
   end
 end
 
