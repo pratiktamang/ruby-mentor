@@ -51,6 +51,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_10_035840) do
     t.string "other_languages"
     t.string "past_career"
     t.text "mentoring_goals"
+    t.string "communication_preference"
+    t.string "availability"
+    t.string "desired_industry"
+    t.text "specific_interests"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["mentee_id"], name: "index_mentee_profiles_on_mentee_id"
@@ -84,6 +88,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_10_035840) do
     t.text "past_workplaces"
     t.boolean "previous_mentoring"
     t.text "motivation"
+    t.string "communication_preference"
+    t.string "availability"
+    t.string "industry_expertise"
+    t.text "specific_interests"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["mentor_id"], name: "index_mentor_profiles_on_mentor_id"

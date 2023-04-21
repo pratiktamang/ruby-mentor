@@ -1,4 +1,4 @@
-<div class="container mx-auto max-w-2xl mt-10">
+<div class="container mx-auto max-w-5xl shadow-black mt-10">
   <h1 class="text-2xl font-bold mb-6 text-center pt-8">Tell us about yourself</h1>
   <%= form_for :mentor_profile, url: mentor_onboarding_index_path(@mentor), class: "bg-white" do |f| %>
     <% if @mentor_profile.errors.any? %>
@@ -98,6 +98,44 @@
         </p>
         <div class="mt-2">
           <%= f.text_area :motivation, required: true, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+        </div>
+      </div>
+
+      <div class="sm:col-span-3">
+        <div class="mt-2">
+          <%= f.label :communication_preference, "Communication preference?*", class: "mb-2 block text-lg font-medium leading-6 text-gray-900" %>
+          <%= f.select :communication_preference, ['Email', 'Phone', 'Text', 'Video'], {}, required: true, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+        </div>
+      </div>
+
+      <div class="sm:col-span-3">
+        <div class="mt-2">
+          <%= f.label :availability, "Availability?*", class: "mb-2 block text-lg font-medium leading-6 text-gray-900" %>
+          <% days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] %>
+          <% days.each do |day| %>
+            <%= check_box_tag "mentor_profile[availability][]", day, false,  { class: "form-checkbox h-5 w-5 text-indigo-600" } %>
+            <%= label_tag "mentor_profile_availability_#{day}", day, class: "mr-2 ml-1" %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="sm:col-span-3">
+        <%= f.label :industry_expertise, "Desirted Industry", class: "block text-lg font-medium leading-6 text-gray-900" %>
+        <p class="text-md text-gray-500 mb-1">
+          e.g Web Development, DevOps, Data Science, Machine Learning etc.
+        </p>
+        <div class="mt-2">
+          <%= f.text_field :industry_expertise, required: true, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+        </div>
+      </div>
+
+      <div class="sm:col-span-3">
+        <%= f.label :specific_interests, "Specialisation?", class: "block text-lg font-medium leading-6 text-gray-900" %>
+        <p class="text-md text-gray-500 mb-1">
+          We will try to pair you with mentee seeking guidance on speficic area that you specialise in. Eg. performance optimization, testing, API development etc.
+        </p>
+        <div class="mt-2">
+          <%= f.text_area :specific_interests, required: true, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
         </div>
       </div>
 

@@ -12,6 +12,10 @@ class CreateMentorProfiles < ActiveRecord::Migration[7.0]
       t.text :past_workplaces
       t.boolean :previous_mentoring
       t.text :motivation
+      t.string :communication_preference
+      t.string :availability
+      t.string :industry_expertise
+      t.text :specific_interests
 
       t.timestamps
     end

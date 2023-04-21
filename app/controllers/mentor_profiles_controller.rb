@@ -32,6 +32,11 @@ class MentorProfilesController < ApplicationController
       :other_languages,
       :past_career,
       :mentoring_goal,
+      :communication_preference,
+      :availability,
+      :industry_expertise,
+      :specific_interests,
+      availability: [],
       mentor_attributes: [:id, :first_name, :last_name]
     )
   end

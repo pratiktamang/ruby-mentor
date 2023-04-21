@@ -10,7 +10,7 @@ class MenteeProfilesController < ApplicationController
     @mentee = Mentee.find(params[:id])
     @mentee_profile = @mentee.mentee_profile
 
-    if @mentee_profile.update!(mentee_profile_params)
+    if @mentee_profile.update(mentee_profile_params)
       redirect_to edit_mentee_profile_path(@mentee), notice: "Your profile was updated successfully."
     else
       render :edit, status: :unprocessable_entity
@@ -23,7 +23,7 @@ class MenteeProfilesController < ApplicationController
     params.require(:mentee_profile).permit(
       :country,
       :city,
-      :workspace_url,
+      :workplace_url,
       :writing_ruby,
       :start_source,
       :underrepresented_group,
@@ -33,7 +33,11 @@ class MenteeProfilesController < ApplicationController
       :other_languages,
       :past_career,
       :mentoring_goals,
-      mentee_attributes: [:id, :first_name, :last_name]
+      :communication_preference,
+      :desired_industry,
+      :specific_interests,
+      mentee_attributes: [:first_name, :last_name, :id],
+      availability: []
     )
   end
 end

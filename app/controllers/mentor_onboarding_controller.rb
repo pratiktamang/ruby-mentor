@@ -34,7 +34,12 @@ class MentorOnboardingController < ApplicationController
       :personal_site,
       :past_workplaces,
       :previous_mentoring,
-      :motivation
+      :motivation,
+      :communication_preference,
+      :availability,
+      :industry_expertise,
+      :specific_interests,
+      availability: []
     )
   end
 end

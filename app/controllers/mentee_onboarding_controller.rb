@@ -37,7 +37,11 @@ class MenteeOnboardingController < ApplicationController
       :other_languages,
       :past_career,
       :mentoring_goals,
-      :mentee_id
+      :communication_preference,
+      :desired_industry,
+      :specific_interests,
+      mentee_attributes: [:first_name, :last_name, :id],
+      availability: []
     )
   end
 end

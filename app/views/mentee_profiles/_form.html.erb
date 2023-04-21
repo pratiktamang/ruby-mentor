@@ -1,5 +1,16 @@
 <%= form_for @mentee_profile, url: mentee_profile_path(@mentee), class: "bg-white" do |f| %>
   <div class="px-4 py-6 sm:p-8  space-y-8">
+    <% if @mentee_profile.errors.any? %>
+      <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 mb-4 rounded relative" role="alert">
+        <strong class="font-bold">Please fix the following errors:</strong>
+        <ul>
+          <% @mentee_profile.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
     <%= f.fields_for :mentee do |mentee_fields| %>
       <div class="sm:col-span-3">
         <%= mentee_fields.label :first_name, "First Name", class: "block text-lg font-medium leading-6 text-gray-900" %>
@@ -73,6 +84,45 @@
         <%= f.text_field :personal_site, placeholder: "https://github.com/username", class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
       </div>
     </div>
+
+    <div class="sm:col-span-3">
+      <div class="mt-2">
+        <%= f.label :communication_preference, "Communication preference?*", class: "mb-2 block text-lg font-medium leading-6 text-gray-900" %>
+        <%= f.select :communication_preference, ['Email', 'Phone', 'Text', 'Video'], {}, required: true, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+      </div>
+    </div>
+
+    <div class="sm:col-span-3">
+      <div class="mt-2">
+        <%= f.label :availability, "Availability?*", class: "mb-2 block text-lg font-medium leading-6 text-gray-900" %>
+        <% days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] %>
+        <% days.each do |day| %>
+          <%= check_box_tag "mentee_profile[availability][]", day, @mentee_profile.availability.include?(day), { class: "form-checkbox h-5 w-5 text-indigo-600" } %>
+          <%= label_tag "mentee_profile_availability_#{day}", day, class: "mr-2 ml-1" %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="sm:col-span-3">
+      <%= f.label :desired_industry, "Desirted Industry", class: "block text-lg font-medium leading-6 text-gray-900" %>
+      <p class="text-md text-gray-500 mb-1">
+        e.g Web Development, DevOps, Data Science, Machine Learning etc.
+      </p>
+      <div class="mt-2">
+        <%= f.text_field :desired_industry, required: true, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+      </div>
+    </div>
+
+    <div class="sm:col-span-3">
+      <%= f.label :specific_interests, "Specific interests?", class: "block text-lg font-medium leading-6 text-gray-900" %>
+      <p class="text-md text-gray-500 mb-1">
+        Any areas of interest within Ruby or Rails development in general you'd like to focus these mentoring sessions such as like performance optimization, testing, API development etc.
+      </p>
+      <div class="mt-2">
+        <%= f.text_area :specific_interests, required: true, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+      </div>
+    </div>
+
 
     <div class="flex justify-center border-t border-gray-900/10 px-4 py-4 sm:px-8">
       <%= f.submit "Submit", class: "hover:cursor-pointer w-96 rounded-md bg-red-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500" %>
