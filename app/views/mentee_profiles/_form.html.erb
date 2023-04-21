@@ -1,5 +1,5 @@
-<%= form_for @mentee_profile, url: mentee_profile_path(@mentee), class: "bg-white" do |f| %>
-  <div class="px-4 py-6 sm:p-8  space-y-8">
+<%= form_with model: @mentee_profile, url: mentee_profile_path(@mentee), class: "bg-white", data: { turbo: "false" } do |f| %>
+  <div class="px-4 py-6 sm:p-8 space-y-8">
     <% if @mentee_profile.errors.any? %>
       <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 mb-4 rounded relative" role="alert">
         <strong class="font-bold">Please fix the following errors:</strong>
@@ -94,11 +94,10 @@
 
     <div class="sm:col-span-3">
       <div class="mt-2">
-        <%= f.label :availability, "Availability?*", class: "mb-2 block text-lg font-medium leading-6 text-gray-900" %>
-        <% days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] %>
-        <% days.each do |day| %>
-          <%= check_box_tag "mentee_profile[availability][]", day, @mentee_profile.availability.include?(day), { class: "form-checkbox h-5 w-5 text-indigo-600" } %>
-          <%= label_tag "mentee_profile_availability_#{day}", day, class: "mr-2 ml-1" %>
+        <p class="mb-2 block text-lg font-medium leading-6 text-gray-900">Availability?*</p>
+        <% MenteeProfile::DAYS.each do |day| %>
+          <%= check_box_tag "mentee_profile[availability][]", day, @mentee_profile.availability.include?(day.to_s) %>
+          <%= label_tag "mentee_profile_availability_#{day}", day.to_s.capitalize %>
         <% end %>
       </div>
     </div>

@@ -24,7 +24,6 @@
       </div>
 
       <div class="sm:col-span-3">
-        <%= f.label :city, "City *", class: "block text-lg font-medium leading-6 text-gray-900" %>
         <p class="text-md text-gray-500 mb-1">
           The nearest city that makes sense for you
         </p>
@@ -118,17 +117,17 @@
         </div>
       </div>
 
-      <div class="sm:col-span-3" data-controller="availability">
+      <div class="sm:col-span-3">
         <div class="mt-2">
-          <%= f.label :availability, "Availability?*", class: "mb-2 block text-lg font-medium leading-6 text-gray-900" %>
-          <% days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] %>
-          <% days.each do |day| %>
-            <%= check_box_tag "mentee_profile[availability][]", day, false, { class: "form-checkbox h-5 w-5 text-indigo-600", data: { "availability-target": "checkbox" } } %>
-            <%= label_tag "mentee_profile_availability_#{day}", day, class: "mr-2 ml-1" %>
-          <% end %>
-        </div>
+        <p class="mb-2 block text-lg font-medium leading-6 text-gray-900">Availability?*</p>
+        <% MenteeProfile::DAYS.each do |day| %>
+          <%= check_box_tag "mentee_profile[availability][]", day, @mentee_profile.availability.include?(day.to_s), class: "text-red-600" %>
+          <%= label_tag "mentee_profile_availability_#{day}", day.to_s.capitalize %>
+        <% end %>
+       </div>
       </div>
 
+              <%# <span class="form-checkbox h-5 w-5 text-red-600 mr-1"> %>
       <div class="sm:col-span-3">
         <%= f.label :desired_industry, "Desirted Industry", class: "block text-lg font-medium leading-6 text-gray-900" %>
         <p class="text-md text-gray-500 mb-1">

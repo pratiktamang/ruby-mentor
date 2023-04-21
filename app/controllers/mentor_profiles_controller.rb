@@ -10,7 +10,7 @@ class MentorProfilesController < ApplicationController
     @mentor = Mentor.find(params[:id])
     @mentor_profile = @mentor.mentor_profile
 
-    if @mentor_profile.update!(mentor_profile_params)
+    if @mentor_profile.update(mentor_profile_params)
       redirect_to edit_mentor_profile_path(@mentor), notice: "Your profile was updated successfully."
     else
       render :edit, status: :unprocessable_entity
@@ -21,19 +21,17 @@ class MentorProfilesController < ApplicationController
 
   def mentor_profile_params
     params.require(:mentor_profile).permit(
+      :company_url,
+      :ruby_start_year,
       :country,
       :city,
-      :workplace_url,
-      :writing_ruby,
-      :start_source,
       :twitter,
       :github,
       :personal_site,
-      :other_languages,
-      :past_career,
-      :mentoring_goal,
+      :past_workplaces,
+      :previous_mentoring,
+      :motivation,
       :communication_preference,
-      :availability,
       :industry_expertise,
       :specific_interests,
       availability: [],

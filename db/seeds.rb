@@ -112,8 +112,8 @@ def elapsed = Benchmark.measure do
   seed_admin
   seed_onboarded_mentees
   seed_onboarded_mentors
-  seed_mentor_profiles
-  seed_mentee_profiles
+  # seed_mentor_profiles
+  # seed_mentee_profiles
 end
 
 puts "Seeded development DB in #{elapsed.real} seconds"

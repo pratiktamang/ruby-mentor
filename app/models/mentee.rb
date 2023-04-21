@@ -11,8 +11,8 @@ class Mentee < ApplicationRecord
   has_many :meetings
   has_one :mentee_profile, dependent: :destroy
 
-  validates :first_name, presence: true
-  validates :last_name, presence: true
+  # validates :first_name, presence: true
+  # validates :last_name, presence: true
   validates :email, presence: true, uniqueness: true
 
   scope :seeking_mentorship, -> { where(seeking: true) }

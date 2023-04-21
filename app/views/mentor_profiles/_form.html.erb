@@ -1,5 +1,15 @@
 <%= form_for @mentor_profile, url: mentor_profile_path(@mentor), class: "bg-white" do |f| %>
   <div class="px-4 py-2 sm:p-8 space-y-8">
+    <% if @mentor_profile.errors.any? %>
+      <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 mb-4 rounded relative" role="alert">
+        <strong class="font-bold">Please fix the following errors:</strong>
+        <ul>
+          <% @mentor_profile.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
 
     <%= f.fields_for :mentor do |mentor_fields| %>
       <div class="sm:col-span-3">
@@ -84,14 +94,12 @@
         <%= f.select :communication_preference, ['Email', 'Phone', 'Text', 'Video'], {}, required: true, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
       </div>
     </div>
-
     <div class="sm:col-span-3">
       <div class="mt-2">
-        <%= f.label :availability, "Availability?*", class: "mb-2 block text-lg font-medium leading-6 text-gray-900" %>
-        <% days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] %>
-        <% days.each do |day| %>
-          <%= check_box_tag "mentor_profile[availability][]", day, false, { required: true, class: "form-checkbox h-5 w-5 text-indigo-600" } %>
-          <%= label_tag "mentor_profile_availability_#{day}", day, class: "mr-2 ml-1" %>
+        <p class="mb-2 block text-lg font-medium leading-6 text-gray-900">Availability?*</p>
+        <% MentorProfile::DAYS.each do |day| %>
+            <%= check_box_tag "mentor_profile[availability][]", day, @mentor_profile.availability.include?(day.to_s), class: "text-red-500" %>
+          <%= label_tag "mentor_profile_availability_#{day}", day.to_s.capitalize %>
         <% end %>
       </div>
     </div>

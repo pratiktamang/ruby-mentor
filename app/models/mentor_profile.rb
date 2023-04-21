@@ -8,10 +8,12 @@ class MentorProfile < ApplicationRecord
   validates :previous_mentoring, presence: true
   validates :motivation, presence: true
   validates :communication_preference, presence: true
-  validates :availability, presence: true
   validates :industry_expertise, presence: true
   validates :specific_interests, presence: true
+  validates :availability, presence: true
 
-  serialize :availability, Array
+  serialize :availability, Array, presence: true
   accepts_nested_attributes_for :mentor
+
+  DAYS = %i[monday tuesday wednesday thursday friday saturday sunday].freeze
 end
