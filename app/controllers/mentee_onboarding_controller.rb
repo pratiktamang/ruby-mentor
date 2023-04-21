@@ -3,11 +3,16 @@ class MenteeOnboardingController < ApplicationController
   before_action :set_mentee
 
   def new
-    @mentee_profile = MenteeProfile.new
+    @mentee_profile = @mentee.build_mentee_profile
   end
 
   def create
-    @mentee_profile = @mentee.build_mentee_profile(mentee_params)
+    mentee_attrs = mentee_onboarding_params.slice(:mentee_attributes)
+    @mentee.update(mentee_attrs[:mentee_attributes])
+
+    profile_params = mentee_onboarding_params.except(:mentee_attributes)
+    @mentee_profile = @mentee.build_mentee_profile(profile_params)
+
     if @mentee_profile.save
       @mentee.update_attribute(:onboarded, true)
       redirect_to mentees_dashboard_path
@@ -22,7 +27,7 @@ class MenteeOnboardingController < ApplicationController
     @mentee = Mentee.find(params[:mentee_id])
   end
 
-  def mentee_params
+  def mentee_onboarding_params
     params.require(:mentee_profile).permit(
       :country,
       :city,
@@ -40,7 +45,7 @@ class MenteeOnboardingController < ApplicationController
       :communication_preference,
       :desired_industry,
       :specific_interests,
-      mentee_attributes: [:first_name, :last_name, :id],
+      mentee_attributes: [:id, :first_name, :last_name],
       availability: []
     )
   end

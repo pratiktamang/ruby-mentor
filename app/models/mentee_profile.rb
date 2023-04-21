@@ -4,7 +4,7 @@ class MenteeProfile < ApplicationRecord
   validates :country, presence: true
   validates :city, presence: true
   validates :workplace_url, presence: true
-  validates :writing_ruby, presence: true, allow_nil: true
+  validates :writing_ruby, inclusion: {in: [true, false]}
   validates :start_source, presence: true
   validates :underrepresented_group, presence: true
   validates :mentoring_goals, presence: true

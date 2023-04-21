@@ -96,7 +96,7 @@
       <div class="mt-2">
         <p class="mb-2 block text-lg font-medium leading-6 text-gray-900">Availability?*</p>
         <% MenteeProfile::DAYS.each do |day| %>
-          <%= check_box_tag "mentee_profile[availability][]", day, @mentee_profile.availability.include?(day.to_s) %>
+          <%= check_box_tag "mentee_profile[availability][]", day, @mentee_profile.availability.include?(day.to_s), class: "text-red-600" %>
           <%= label_tag "mentee_profile_availability_#{day}", day.to_s.capitalize %>
         <% end %>
       </div>
