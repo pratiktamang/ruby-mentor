@@ -10,7 +10,9 @@ class MentorProfilesController < ApplicationController
     @mentor = Mentor.find(params[:id])
     @mentor_profile = @mentor.mentor_profile
 
-    if @mentor_profile.update(mentor_profile_params)
+    if params[:mentor_profile][:availability].nil?
+      redirect_to edit_mentor_profile_path(@mentor), notice: "Availability must be selected."
+    elsif @mentor_profile.update(mentor_profile_params)
       redirect_to edit_mentor_profile_path(@mentor), notice: "Your profile was updated successfully."
     else
       render :edit, status: :unprocessable_entity

@@ -1,6 +1,6 @@
 <div class="container mx-auto max-w-5xl shadow-black mt-10">
   <h1 class="text-2xl font-bold mb-6 text-center pt-8">Tell us about yourself</h1>
-  <%= form_for :mentor_profile, url: mentor_onboarding_index_path(@mentor), class: "bg-white" do |f| %>
+  <%= form_for [@mentor, @mentor_profile], url: mentor_onboarding_index_path(@mentor), class: "bg-white" do |f| %>
     <% if @mentor_profile.errors.any? %>
       <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 mb-4 rounded relative" role="alert">
         <strong class="font-bold">Please fix the following errors:</strong>
@@ -12,6 +12,18 @@
       </div>
     <% end %>
     <div class="px-4 py-6 sm:p-8  space-y-8">
+
+    <%= f.fields_for :mentor do |mentor_fields| %>
+      <div class="sm:col-span-3">
+        <%= mentor_fields.label :first_name, "First Name *", class: "block text-lg font-medium leading-6 text-gray-900" %>
+        <%= mentor_fields.text_field :first_name, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+      </div>
+
+      <div class="sm:col-span-3">
+        <%= mentor_fields.label :last_name, "Last Name *", class: "block text-lg font-medium leading-6 text-gray-900" %>
+        <%= mentor_fields.text_field :last_name, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+      </div>
+    <% end %>
       <div class="sm:col-span-3">
         <%= f.label :company_url, "Where do you work? *", class: "block text-lg font-medium leading-6 text-gray-900" %>
         <p class="text-md text-gray-500 mb-1">
