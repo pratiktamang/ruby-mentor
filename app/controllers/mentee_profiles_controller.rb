@@ -10,7 +10,9 @@ class MenteeProfilesController < ApplicationController
     @mentee = Mentee.find(params[:id])
     @mentee_profile = @mentee.mentee_profile
 
-    if @mentee_profile.update(mentee_profile_params)
+    if params[:mentee_profile][:availability].nil?
+      render :edit, status: :unprocessable_entity, notice: "Availability must be selected."
+    elsif @mentee_profile.update(mentee_profile_params)
       redirect_to edit_mentee_profile_path(@mentee), notice: "Your profile was updated successfully."
     else
       render :edit, status: :unprocessable_entity
