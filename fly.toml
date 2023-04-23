@@ -1,4 +1,4 @@
-# fly.toml file generated for railsmentorapp on 2023-04-10T00:42:23+01:00
+# fly.toml file generated for railsmentorapp on 2023-04-22T18:36:42+01:00
 
 app = "railsmentorapp"
 kill_signal = "SIGINT"

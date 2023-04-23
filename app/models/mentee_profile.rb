@@ -8,7 +8,7 @@ class MenteeProfile < ApplicationRecord
   validates :start_source, presence: true
   validates :underrepresented_group, presence: true
   validates :mentoring_goals, presence: true
-  validates :communication_preference, presence: true
+  validates :learning_preference, presence: true
   validates :desired_industry, presence: true
   validates :specific_interests, presence: true
   validates :availability, presence: true
@@ -16,4 +16,5 @@ class MenteeProfile < ApplicationRecord
   accepts_nested_attributes_for :mentee
 
   DAYS = %i[monday tuesday wednesday thursday friday saturday sunday].freeze
+  LEARNING_PREFERENCES = %i[visual auditory kinesthetic social reading solitary].freeze
 end

@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   namespace :admins do
     resources :mentors
     resources :mentees
-    resources :matches
+    resources :matches, only: [:index]
     get "dashboard", to: "dashboard#index"
     post "run_match_service", to: "dashboard#run_match_service"
     post "approve_matches", to: "matches#approve_matches"

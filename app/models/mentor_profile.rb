@@ -7,7 +7,7 @@ class MentorProfile < ApplicationRecord
   validates :city, presence: true
   validates :previous_mentoring, inclusion: {in: [true, false]}
   validates :motivation, presence: true
-  validates :communication_preference, presence: true
+  validates :learning_preference, presence: true
   validates :industry_expertise, presence: true
   validates :specific_interests, presence: true
   validates :availability, presence: true
@@ -16,4 +16,5 @@ class MentorProfile < ApplicationRecord
   accepts_nested_attributes_for :mentor
 
   DAYS = %i[monday tuesday wednesday thursday friday saturday sunday].freeze
+  LEARNING_PREFERENCES = %i[visual auditory kinesthetic social reading solitary].freeze
 end

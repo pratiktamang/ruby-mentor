@@ -7,14 +7,11 @@ class Admins::DashboardController < ApplicationController
 
   def run_match_service
     mentors = Mentor.available
-    mentees = Mentee.seeking
+    mentees = Mentee.all
 
-    matcher = MentorMenteeMatcher.new(mentors, mentees)
-    matches = matcher.match
+    matching_service = MatchingService.new(mentors, mentees)
+    @matched_pairs = matching_service.perform
 
-    # Store matches in session or another temporary storage
-    session[:matches] = matches.map { |m, n| {mentee_id: m.id, mentor_id: n.id} }
-
-    redirect_to admin_matches_path
+    render "admins/matches/index"
   end
 end

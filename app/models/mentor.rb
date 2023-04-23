@@ -20,4 +20,16 @@ class Mentor < ApplicationRecord
   def full_name
     "#{first_name} #{last_name}"
   end
+
+  def profile
+    mentor_profile
+  end
+
+  def city
+    mentor_profile.city
+  end
+
+  def country
+    mentor_profile.country
+  end
 end

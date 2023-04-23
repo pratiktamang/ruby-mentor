@@ -33,7 +33,7 @@ class MentorProfilesController < ApplicationController
       :past_workplaces,
       :previous_mentoring,
       :motivation,
-      :communication_preference,
+      :learning_preferences,
       :industry_expertise,
       :specific_interests,
       availability: [],

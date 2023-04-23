@@ -115,8 +115,8 @@
 
       <div class="sm:col-span-3">
         <div class="mt-2">
-          <%= f.label :communication_preference, "Communication preference?*", class: "mb-2 block text-lg font-medium leading-6 text-gray-900" %>
-          <%= f.select :communication_preference, ['Email', 'Phone', 'Text', 'Video'], {}, required: true, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+          <%= f.label :learning_preferences, "Preferred Learning Style?*", class: "mb-2 block text-lg font-medium leading-6 text-gray-900" %>
+          <%= f.select :learning_preferences, MentorProfile::LEARNING_PREFERENCES.map(&:to_s).map(&:titlecase), {}, required: true, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
         </div>
       </div>
 
@@ -130,7 +130,7 @@
       </div>
 
       <div class="sm:col-span-3">
-        <%= f.label :industry_expertise, "Desirted Industry", class: "block text-lg font-medium leading-6 text-gray-900" %>
+        <%= f.label :industry_expertise, "Desired Industry", class: "block text-lg font-medium leading-6 text-gray-900" %>
         <p class="text-md text-gray-500 mb-1">
           e.g Web Development, DevOps, Data Science, Machine Learning etc.
         </p>
@@ -142,7 +142,7 @@
       <div class="sm:col-span-3">
         <%= f.label :specific_interests, "Specialisation?", class: "block text-lg font-medium leading-6 text-gray-900" %>
         <p class="text-md text-gray-500 mb-1">
-          We will try to pair you with mentee seeking guidance on speficic area that you specialise in. Eg. performance optimization, testing, API development etc.
+          We will try to pair you with mentee who is seeking guidance in a specific area of expertise that you specialize in, such as performance optimization, testing, API development, and so on.
         </p>
         <div class="mt-2">
           <%= f.text_area :specific_interests, required: true, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>

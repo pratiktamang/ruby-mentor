@@ -51,7 +51,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_10_035840) do
     t.string "other_languages"
     t.string "past_career"
     t.text "mentoring_goals"
-    t.string "communication_preference"
+    t.string "learning_preference"
     t.text "availability", default: [], array: true
     t.string "desired_industry"
     t.text "specific_interests"
@@ -88,7 +88,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_10_035840) do
     t.text "past_workplaces"
     t.boolean "previous_mentoring"
     t.text "motivation"
-    t.string "communication_preference"
+    t.string "learning_preference"
     t.string "availability"
     t.string "industry_expertise"
     t.text "specific_interests"

@@ -39,7 +39,7 @@ class MentorOnboardingController < ApplicationController
       :past_workplaces,
       :previous_mentoring,
       :motivation,
-      :communication_preference,
+      :learning_preferences,
       :industry_expertise,
       :specific_interests,
       mentor_attributes: [:id, :first_name, :last_name],
