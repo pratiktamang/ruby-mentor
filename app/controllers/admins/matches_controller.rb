@@ -1,10 +1,8 @@
 class Admins::MatchesController < ApplicationController
   before_action :authenticate_admin!
+  include Pagy::Backend
 
   def index
-    mentors = Mentor.available
-    mentees = Mentee.seeking_mentorship
-    matching_service = MatchingService.new(mentors, mentees)
-    @matched_pairs = matching_service.perform
+    @pagy, @mentorships = pagy(Mentorship.all, items: 25)
   end
 end
