@@ -1,40 +1,68 @@
-<tr>
-  <td>
-    <span class="flex flex-col">
-      <p class="font-semibold"><%= mentee.full_name %></p>
-      <p><%= mentee.email %></p>
-      <p><%= mentee.country %></p>
-    </span>
-  </td>
-
+<% mentee = Mentee.find_by(id: mentorship.mentee_id) %>
+<% mentor = Mentor.find_by(id: mentorship.mentor_id) %>
+<tr class="divide-x divide-gray-200 hover:bg-red-50">
   <% if mentor %>
-    <td>
-    <span class="flex flex-col p-1">
-      <p class="font-semibold"><%= mentor.full_name %></p>
-      <p><%= mentor.email %></p>
-      <p><%= mentor.country %></p>
-    </span>
-  </td>
+    <td class="whitespace-nowrap py-4 pl-4 pr-4 text-sm text-gray-500 sm:pr-0 align-top">
+      <span class="flex flex-col">
+        <p class="font-semibold"><%= mentee.full_name %></p>
+        <p><%= mentee.email %></p>
+        <p><%= mentee.country %></p>
+      </span>
+    </td>
   <% else %>
-    <td>No mentor found</td>
+    <td class="whitespace-nowrap py-4 pl-4 pr-4 text-sm text-gray-500 sm:pr-0 align-top">
+      no mentee found
+    </td>
   <% end %>
+  <% if mentor %>
+    <td class="whitespace-nowrap py-4 pl-4 pr-4 text-sm text-gray-500 sm:pr-0 align-top">
+      <span class="flex flex-col">
+        <p class="font-semibold"><%= mentor.full_name %></p>
+        <p><%= mentor.email %></p>
+        <p><%= mentor.country %></p>
+      </span>
+    </td>
+  <% else %>
+    <td class="whitespace-nowrap py-4 pl-4 pr-4 text-sm text-gray-500 sm:pr-0 align-top">
+      no mentor found
+    </td>
+  <% end %>
+  <% match_reasons = JSON.parse(mentorship.match_reasons) %>
+  <td class="whitespace-nowrap p-4 text-sm text-gray-500">
+    <div class="grid grid-cols-2 gap-x-1 max-w-xs">
+      <span class="font-semibold">Comp. Score:</span>
+      <span><%= match_reasons[0] %></span>
 
-  <td class="text-center"><%= match_details[:compatibility_score] %></td>
+      <span class="font-semibold">Country:</span>
+      <span><%= match_reasons[1]["country_match"] ? "Yes" : "No" %></span>
 
-  <td><%= (match_details[:specific_interests_overlap] || []).join(', ') %></td>
+      <span class="font-semibold">City:</span>
+      <span><%= match_reasons[1]["city_match"] ? "Yes" : "No" %></span>
 
-  <td>
-    <span class="flex flex-col">
-      <p>Mentor: <%#= mentor.city %></p>
-      <p>Mentee: <%#= mentee.city %></p>
-    </span>
+      <span class="font-semibold">Common Avail.:</span>
+      <span><%= match_reasons[1]["common_availability"].join(", ") %></span>
+
+      <span class="font-semibold">Avail. Score:</span>
+      <span><%= match_reasons[1]["availability_score"] %></span>
+
+      <span class="font-semibold">Industry:</span>
+      <span><%= match_reasons[1]["industry_match"] %></span>
+
+      <span class="font-semibold">Interests:</span>
+      <span><%= match_reasons[1]["specific_interests_overlap"].join(", ").capitalize %></span>
+
+      <span class="font-semibold">Interests Score:</span>
+      <span><%= match_reasons[1]["specific_interests_score"] %></span>
+
+      <span class="font-semibold">Total Score:</span>
+      <span><%= match_reasons[1]["total_score"] %></span>
+    </div>
   </td>
-
-  <td>
+  <td class="whitespace-nowrap py-4 pl-4 pr-4 text-sm text-gray-500 sm:pr-0">
     <span class="flex flex-row">
-      <p class="mr-2"><%= link_to 'Approve', "#" %>
+      <p class="mr-2 text-indigo-600 hover:text-indigo-900"><%= link_to 'Approve', "#" %>
       <p>|</p>
-      <p class="ml-2"> <%= link_to 'Change', "#" %></p>
+      <p class="ml-2 text-indigo-600 hover:text-indigo-900"> <%= link_to 'Change', "#" %></p>
     </span>
   </td>
 </tr>
