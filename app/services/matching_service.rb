@@ -112,12 +112,26 @@ class MatchingService
     specific_interests_overlap = mentor_interests & mentee_interests
     specific_interests_score = specific_interests_overlap.length * 2
 
+    # Check if mentor's learning preferences match mentee's preferences
+    mentor_learning_preferences = mentor_profile.learning_preferences.split(",").map(&:strip)
+    mentee_learning_preferences = mentee_profile.learning_preferences.split(",").map(&:strip)
+    learning_preferences_overlap = mentor_learning_preferences & mentee_learning_preferences
+    learning_preferences_score = learning_preferences_overlap.length * 1
+
+    # Check if mentor's and mentee's other languages match
+    mentor_languages = mentor_profile.other_languages.split(",").map(&:strip)
+    mentee_languages = mentee_profile.other_languages.split(",").map(&:strip)
+    language_overlap = mentor_languages & mentee_languages
+    language_match_score = language_overlap.length * 1
+
     # Calculate the total compatibility score
     total_score = (country_match ? 10 : 0) +
       (city_match ? 5 : 0) +
       availability_score +
       (industry_match ? 3 : 0) +
-      specific_interests_score
+      specific_interests_score +
+      learning_preferences_score +
+      language_match_score
 
     match_details = {
       country_match: country_match,
@@ -127,46 +141,13 @@ class MatchingService
       industry_match: industry_match,
       specific_interests_overlap: specific_interests_overlap,
       specific_interests_score: specific_interests_score,
+      learning_preferences_overlap: learning_preferences_overlap,
+      learning_preferences_score: learning_preferences_score,
+      language_overlap: language_overlap,
+      language_match_score: language_match_score,
       total_score: total_score
     }
 
-    # Return the total score as the first element of an array, followed by the match_details hash
     [total_score, match_details]
   end
 end
-# Limited mentors or mentees: If there are very few mentors or mentees available, it might be difficult to find suitable matches for everyone.
-# In extreme cases, when there are no mentors or mentees, the code will not produce any matches.
-
-# Mentors with multiple high compatibility scores: If a mentor has equally high compatibility scores with multiple mentees,
-# the current implementation will match the mentor with the first encountered mentee in the list, potentially leaving other compatible
-# mentees unmatched or with less suitable mentors.
-
-# No mentors from the same country: The code requires that mentors and mentees be from the same country. If there are no mentors
-# from the same country as a mentee, the code will return [nil, {}] for that mentee. This might not be desirable if there are mentors
-# with similar interests and expertise from other countries who could still provide valuable mentorship.
-
-# Equal weights for all factors: The code calculates the compatibility score using fixed weights for factors like city, availability,
-# industry expertise, and specific interests. These weights might not accurately represent the importance of each factor for all users.
-# For example, some mentees might prioritize industry expertise over being in the same city.
-
-# Availability overlap not considered: The code calculates the availability score based on the number of overlapping available time slots
-# between the mentor and mentee, but it does not consider the actual duration of the overlap. For instance, a 30-minute overlap might be
-# considered the same as a 3-hour overlap, which may not accurately reflect the quality of the match.
-
-# Inefficient algorithm: The current implementation of the code calculates the compatibility score between a mentor and mentee multiple times,
-# which can be computationally expensive, especially when there are a large number of mentors and mentees. This can lead to performance issues.
-
-# To address some of these edge cases and potential issues, you can consider:
-
-# Allowing mentor-mentee matches across countries if no suitable mentors are available within the same country.
-# Implementing a more sophisticated matching algorithm, such as the Gale-Shapley algorithm or other optimization techniques,
-# to find stable and optimal matches.
-
-# Allowing users to define their priorities and weights for each factor to better tailor the matching process to their needs.
-# Considering the duration of the availability overlap when calculating the availability score.
-# Optimizing the code to avoid redundant calculations of compatibility scores.
-
-# Also, remember that the Gale-Shapley algorithm assumes an equal number of mentors and mentees and doesn't explicitly account for
-# the same-country constraint. If these factors are important, you may need to adjust the algorithm to accommodate them.
-
-# https://chat.openai.com/c/e4a9f886-cb43-4091-88cd-ff45bfa3c34d

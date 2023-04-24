@@ -10,6 +10,7 @@ class CreateMentorProfiles < ActiveRecord::Migration[7.0]
       t.string :github
       t.string :personal_site
       t.text :past_workplaces
+      t.string :other_languages
       t.boolean :previous_mentoring
       t.text :motivation
       t.string :learning_preferences

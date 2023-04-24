@@ -75,6 +75,7 @@ def seed_mentor_profiles
   days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
   countries = ["UK", "USA", "France", "Brazil", "Ukraine", "Poland", "Japan"]
   areas = ["rails", "web-dev", "dev ops", "machine learning"]
+  languages = ["English", "French", "Spanish", "German", "Russian", "Japanese", "Chinese"]
 
   mentors.each do |mentor|
     mentor_profile = mentor.create_mentor_profile(
@@ -89,6 +90,7 @@ def seed_mentor_profiles
       previous_mentoring: [true, false].sample,
       motivation: Faker::Lorem.sentence,
       learning_preferences: learning_preferences.sample,
+      other_languages: languages.sample,
       availability: days.sample(rand(1..days.length)),
       industry_expertise: Faker::Lorem.sentence,
       specific_interests: areas.sample
@@ -103,6 +105,7 @@ def seed_mentee_profiles
   days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
   countries = ["UK", "USA", "France", "Brazil", "Ukraine", "Poland", "Japan"]
   areas = ["rails", "web-dev", "dev ops", "machine learning"]
+  languages = ["English", "French", "Spanish", "German", "Russian", "Japanese", "Chinese"]
 
   mentees.each do |mentee|
     mentee_profile = mentee.build_mentee_profile(
@@ -115,7 +118,7 @@ def seed_mentee_profiles
       twitter: Faker::Internet.user_name,
       github: Faker::Internet.user_name,
       personal_site: Faker::Internet.url,
-      other_languages: Faker::Lorem.sentence,
+      other_languages: languages.sample,
       past_career: Faker::Lorem.sentence,
       mentoring_goals: Faker::Lorem.sentence,
       learning_preferences: learning_preferences.sample,

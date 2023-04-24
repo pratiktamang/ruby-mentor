@@ -1,37 +1,31 @@
 <%= render "admins/shared/skeleton" do %>
   <%= turbo_frame_tag "admin_content" do %>
-    <div class="-mx-4 mt-8 sm:-mx-0 overflow-x-scroll">
-      <div class="px-4 sm:px-6 lg:px-8">
-        <div class="sm:flex sm:items-center">
-          <div class="sm:flex-auto">
-            <h1 class="text-base font-semibold leading-6 text-gray-900"></h1>
-          </div>
-          <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-            <%= button_to 'Add Mentee', admins_run_match_service_path, method: :post,
-                class: "mt-2 rounded-md bg-red-600 py-2 px-3 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 ml-2" %>
-          </div>
-        </div>
-        <div class="mt-8 flow-root">
-          <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-            <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-              <table class="min-w-full divide-y divide-gray-300">
-                <thead>
-                  <tr class="divide-x divide-gray-200">
-                    <th scope="col" class="py-3.5 pl-4 pr-4 text-center text-sm font-semibold text-gray-900 sm:pl-0">Signup</th>
-                    <th scope="col" class="py-3.5 pl-4 pr-4 text-center text-sm font-semibold text-gray-900 sm:pl-0">Mentor</th>
-                    <th scope="col" class="py-3.5 pl-4 pr-4 text-center text-sm font-semibold text-gray-900 sm:pl-0">Paired Mentor</th>
-                    <% @mentor_headers.each do |header| %>
-                      <th scope="col" class="py-3.5 pl-4 pr-4 text-center text-sm font-semibold text-gray-900 sm:pl-0"><%= header.titleize %></th>
-                    <% end %>
-                  </tr>
-                </thead>
-                <tbody class="divide-y divide-gray-200 bg-white">
-                  <% @mentors.each do |mentor| %>
-                    <%= render "mentor", mentor: mentor %>
+    <div class="sm:flex sm:items-center">
+      <div class="sm:flex-auto"></div>
+      <%= button_to 'Add Mentor', admins_run_match_service_path, method: :post,
+          class: "mt-2 rounded-md bg-red-600 py-2 px-3 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-red-500 ml-2" %>
+    </div>
+    <div class="overflow-x-scroll ring-1 ring-gray-300 rounded-md mt-4">
+      <div class="flow-root">
+        <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+          <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+            <table class="min-w-full divide-y divide-gray-300">
+              <thead>
+                <tr class="divide-x divide-gray-200">
+                  <th scope="col" class="py-3.5 pl-4 pr-4 text-center text-sm font-semibold text-gray-900 sm:pl-0">Signup</th>
+                  <th scope="col" class="py-3.5 pl-4 pr-4 text-center text-sm font-semibold text-gray-900 sm:pl-0">Mentor</th>
+                  <th scope="col" class="py-3.5 pl-4 pr-4 text-center text-sm font-semibold text-gray-900 sm:pl-0">Paired Mentor</th>
+                  <% @mentor_headers.each do |header| %>
+                    <th scope="col" class="py-3.5 pl-4 pr-4 text-center text-sm font-semibold text-gray-900 sm:pl-0"><%= header.titleize %></th>
                   <% end %>
-                </tbody>
-              </table>
-            </div>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-200 bg-white">
+                <% @mentors.each do |mentor| %>
+                  <%= render "mentor", mentor: mentor %>
+                <% end %>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
