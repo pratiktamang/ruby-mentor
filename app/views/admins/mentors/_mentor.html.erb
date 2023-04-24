@@ -1,7 +1,10 @@
 <% if mentor.onboarded %>
   <% mentorship = Mentorship.find_by(mentor_id: mentor.id) %>
   <tr class="text-xs text-center divide-x divide-gray-200 hover:bg-red-50">
-    <td class="whitespace-nowrap py-4 pl-4 pr-4 text-sm text-gray-500 sm:pr-0"><%= mentor.created_at.strftime('%B %d %Y') %></td>
+    <td class="whitespace-nowrap py-4 pl-4 pr-4 text-sm text-gray-500 sm:pr-0">
+      <span class="pl-4 pr-4">
+        <%= mentor.created_at.strftime('%B %d %Y') %></td>
+      </span>
     <td class="whitespace-nowrap py-4 pl-4 pr-4 text-sm text-gray-500 sm:pr-0">
       <span class="flex flex-col">
         <%= mentor.full_name %>
@@ -13,24 +16,26 @@
         <% mentee = Mentee.find(mentorship.mentor_id) %>
         <%= mentee.full_name %>
       <% else %>
-        No mentee assigned
+          <span class="p-4">
+            No mentee assigned
+          </span>
       <% end %>
     </td>
 
     <td class="whitespace-nowrap py-4 pl-4 pr-4 text-sm text-gray-500 sm:pr-0"><%= mentor.mentor_profile&.company_url %></td>
-    <td class="whitespace-nowrap py-4 pl-4 pr-4 text-sm text-gray-500 sm:pr-0"><%= mentor.mentor_profile&.ruby_start_year.strftime('%Y') %></td>
-    <td class="whitespace-nowrap py-4 pl-4 pr-4 text-sm text-gray-500 sm:pr-0"><%= mentor.mentor_profile&.country %></td>
-    <td class="whitespace-nowrap py-4 pl-4 pr-4 text-sm text-gray-500 sm:pr-0"><%= mentor.mentor_profile&.city %></td>
-    <td class="whitespace-nowrap py-4 pl-4 pr-4 text-sm text-gray-500 sm:pr-0"><%= mentor.mentor_profile&.twitter %></td>
-    <td class="whitespace-nowrap py-4 pl-4 pr-4 text-sm text-gray-500 sm:pr-0"><%= mentor.mentor_profile&.github %></td>
-    <td class="whitespace-nowrap py-4 pl-4 pr-4 text-sm text-gray-500 sm:pr-0"><%= mentor.mentor_profile&.personal_site %></td>
-    <td class="whitespace-nowrap py-4 pl-4 pr-4 text-sm text-gray-500 sm:pr-0"><%= mentor.mentor_profile&.past_workplaces %></td>
-    <td class="whitespace-nowrap py-4 pl-4 pr-4 text-sm text-gray-500 sm:pr-0"><%= mentor.mentor_profile&.previous_mentoring %></td>
-    <td class="whitespace-nowrap py-4 pl-4 pr-4 text-sm text-gray-500 sm:pr-0"><%= mentor.mentor_profile&.motivation %></td>
-    <td class="whitespace-nowrap py-4 pl-4 pr-4 text-sm text-gray-500 sm:pr-0"><%= mentor.mentor_profile&.learning_preferences %></td>
-    <td class="whitespace-nowrap py-4 pl-4 pr-4 text-sm text-gray-500 sm:pr-0"><%= mentor.mentor_profile&.availability %></td>
-    <td class="whitespace-nowrap py-4 pl-4 pr-4 text-sm text-gray-500 sm:pr-0"><%= mentor.mentor_profile&.industry_expertise %></td>
-    <td class="whitespace-nowrap py-4 pl-4 pr-4 text-sm text-gray-500 sm:pr-0"><%= mentor.mentor_profile&.specific_interests %></td>
+    <td class="whitespace-nowrap py-4 pl-4 pr-4 text-sm text-gray-500 sm:pr-0"><span class="p-4"><%= mentor.mentor_profile&.ruby_start_year.strftime('%Y') %></span></td>
+    <td class="whitespace-nowrap py-4 pl-4 pr-4 text-sm text-gray-500 sm:pr-0"><span class="p-4"><%= mentor.mentor_profile&.country %></span></td>
+    <td class="whitespace-nowrap py-4 pl-4 pr-4 text-sm text-gray-500 sm:pr-0"><span class="p-4"><%= mentor.mentor_profile&.city %></span></td>
+    <td class="whitespace-nowrap py-4 pl-4 pr-4 text-sm text-gray-500 sm:pr-0"><span class="p-4"><%= mentor.mentor_profile&.twitter %></span></td>
+    <td class="whitespace-nowrap py-4 pl-4 pr-4 text-sm text-gray-500 sm:pr-0"><span class="p-4"><%= mentor.mentor_profile&.github %></td></span></td>
+    <td class="whitespace-nowrap py-4 pl-4 pr-4 text-sm text-gray-500 sm:pr-0"><span class="p-4"><%= mentor.mentor_profile&.personal_site %></span></td>
+    <td class="whitespace-nowrap py-4 pl-4 pr-4 text-sm text-gray-500 sm:pr-0"><span class="p-4"><%= mentor.mentor_profile&.past_workplaces %></span></td>
+    <td class="whitespace-nowrap py-4 pl-4 pr-4 text-sm text-gray-500 sm:pr-0"><span class="p-4"><%= mentor.mentor_profile&.previous_mentoring %></span></td>
+    <td class="whitespace-nowrap py-4 pl-4 pr-4 text-sm text-gray-500 sm:pr-0"><span class="p-4"><%= mentor.mentor_profile&.motivation %></span></td>
+    <td class="whitespace-nowrap py-4 pl-4 pr-4 text-sm text-gray-500 sm:pr-0"><span class="p-4"><%= mentor.mentor_profile&.learning_preferences %></span></td>
+    <td class="whitespace-nowrap py-4 pl-4 pr-4 text-sm text-gray-500 sm:pr-0"><span class="p-4"><%= mentor.mentor_profile&.availability %></span></td>
+    <td class="whitespace-nowrap py-4 pl-4 pr-4 text-sm text-gray-500 sm:pr-0"><span class="p-4"><%= mentor.mentor_profile&.industry_expertise %></span></td>
+    <td class="whitespace-nowrap py-4 pl-4 pr-4 text-sm text-gray-500 sm:pr-0"><span class="p-4"><%= mentor.mentor_profile&.specific_interests %></span></td>
     <td class="whitespace-nowrap py-4 pl-4 pr-4 text-sm text-gray-500 sm:pr-0">
       <a href="#" class="text-indigo-600 hover:text-indigo-900">View</a>
     </td>

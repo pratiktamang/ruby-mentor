@@ -30,7 +30,7 @@
   <% match_reasons = JSON.parse(mentorship.match_reasons) %>
   <td class="whitespace-nowrap p-4 text-sm text-gray-500">
     <div class="grid grid-cols-2 gap-x-1 max-w-xs">
-      <span class="font-semibold">Comp. Score:</span>
+      <span class="font-semibold">Compatibility Score:</span>
       <span><%= match_reasons[0] %></span>
 
       <span class="font-semibold">Country:</span>
@@ -39,10 +39,10 @@
       <span class="font-semibold">City:</span>
       <span><%= match_reasons[1]["city_match"] ? "Yes" : "No" %></span>
 
-      <span class="font-semibold">Common Avail.:</span>
+      <span class="font-semibold">Common Availability:</span>
       <span><%= match_reasons[1]["common_availability"].join(", ") %></span>
 
-      <span class="font-semibold">Avail. Score:</span>
+      <span class="font-semibold">Availability Score:</span>
       <span><%= match_reasons[1]["availability_score"] %></span>
 
       <span class="font-semibold">Industry:</span>
