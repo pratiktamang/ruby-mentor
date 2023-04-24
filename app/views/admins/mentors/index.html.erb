@@ -3,13 +3,17 @@
     <div class="-mx-4 mt-8 sm:-mx-0 overflow-x-scroll">
       <table class="min-w-full divide-y divide-gray-300">
         <thead>
-          <tr>
-            <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell">Signed Up</th>
-            <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell">Mentor</th>
+          <tr class="divide-x divide-gray-200">
+            <th scope="col" class="hidden w-full px-8 py-3.5 text-center text-sm font-semibold text-gray-900 lg:table-cell">Signup</th>
+            <th scope="col" class="hidden px-8 py-3.5 text-center text-sm font-semibold text-gray-900 lg:table-cell">Mentor</th>
             <% @mentor_headers.each do |header| %>
-              <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell"><%= header.titleize %></th>
+              <th scope="col" class="hidden w-8 px-8 py-3.5 text-center text-sm font-semibold text-gray-900 lg:table-cell">
+                <p class="w-32">
+                  <%= header.titleize %>
+                </p>
+              </th>
             <% end %>
-            <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-0">
+            <th scope="col" class="relative px-8 pl-3 pr-4 sm:pr-0">
               <span class="sr-only">Edit</span>
             </th>
           </tr>
@@ -20,6 +24,12 @@
           <% end %>
         </tbody>
       </table>
+      <div class="flex justify-center mt-4 mb-2  mr-[256px]">
+        <% position ||= 'top' %>
+        <nav class="pagy-nav my-4 text-center" role="navigation" aria-label="pager <%= position %>">
+            <%== pagy_nav(@pagy) if @pagy.pages > 1 %>
+        </nav>
+      </div>
     </div>
   <% end %>
 <% end %>

@@ -1,46 +1,46 @@
 <% if mentee.onboarded %>
-  <tr class="text-xs">
-    <td class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-0"><%= mentee.created_at.strftime('%B %d %Y') %></td>
-    <td class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-0">
+  <tr class="hover:bg-red-50 text-xs text-center divide-x divide-gray-200">
+    <td class="w-full max-w-0 py-6 pl-4 pr-3 text-sm text-gray-900 sm:w-auto sm:max-w-none sm:pl-0"><%= mentee.created_at.strftime('%B %d %Y') %></td>
+    <td class="w-full max-w-0 py-6 pl-4 pr-3 text-sm text-gray-900 sm:w-auto sm:max-w-none sm:pl-0">
       <span class="flex flex-col">
         <%= mentee.full_name %>
         <%= mentee.email %>
       </span>
     </td>
-    <td class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-0"><%= mentee.mentee_profile.created_at.strftime('%B %d %Y') %></td>
-    <td class="hidden px-3 py-4 text-sm text-gray-500 lg:table-cell"><%= mentee.mentee_profile&.country %></td>
-    <td class="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell"><%= mentee.mentee_profile&.city %></td>
-    <td class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-0"><%= mentee.mentee_profile&.workplace_url %></td>
-    <td class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-0"><%= mentee.mentee_profile&.writing_ruby %></td>
-    <td class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-0"><%= mentee.mentee_profile&.underrepresented_group %></td>
-    <td class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-0"><%= mentee.mentee_profile&.start_source %></td>
-    <td class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-0"><%= mentee.mentee_profile&.twitter %></td>
-    <td class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-0"><%= mentee.mentee_profile&.github %></td>
-    <td class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-0"><%= mentee.mentee_profile&.other_languages %></td>
-    <td class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-0"><%= mentee.mentee_profile&.past_career %></td>
-    <td class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-0"><%= mentee.mentee_profile&.mentoring_goals %></td>
-    <td class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-0"><%= mentee.mentee_profile&.learning_preference %></td>
-    <td class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-0"><%= mentee.mentee_profile&.availability %></td>
-    <td class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-0"><%= mentee.mentee_profile&.desired_industry %></td>
-    <td class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-0"><%= mentee.mentee_profile&.desired_industry %></td>
-    <td class="py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
+    <td class="w-full max-w-0 py-6 pl-4 pr-3 text-sm text-gray-900 sm:w-auto sm:max-w-none sm:pl-0"><%= mentee.mentee_profile.created_at.strftime('%B %d %Y') %></td>
+    <td class="w-full max-w-0 py-6 pl-4 pr-3 text-sm text-gray-900 sm:w-auto sm:max-w-none sm:pl-0"><%= mentee.mentee_profile&.country %></td>
+    <td class="w-full max-w-0 py-6 pl-4 pr-3 text-sm text-gray-900 sm:w-auto sm:max-w-none sm:pl-0"><%= mentee.mentee_profile&.city %></td>
+    <td class="w-full max-w-0 py-6 pl-4 pr-3 text-sm text-gray-900 sm:w-auto sm:max-w-none sm:pl-0"><%= mentee.mentee_profile&.workplace_url %></td>
+    <td class="w-full max-w-0 py-6 pl-4 pr-3 text-sm text-gray-900 sm:w-auto sm:max-w-none sm:pl-0"><%= mentee.mentee_profile&.writing_ruby %></td>
+    <td class="w-full max-w-0 py-6 pl-4 pr-3 text-sm text-gray-900 sm:w-auto sm:max-w-none sm:pl-0"><%= mentee.mentee_profile&.underrepresented_group %></td>
+    <td class="w-full max-w-0 py-6 pl-4 pr-3 text-sm text-gray-900 sm:w-auto sm:max-w-none sm:pl-0"><%= mentee.mentee_profile&.start_source %></td>
+    <td class="w-full max-w-0 py-6 pl-4 pr-3 text-sm text-gray-900 sm:w-auto sm:max-w-none sm:pl-0"><%= mentee.mentee_profile&.twitter %></td>
+    <td class="w-full max-w-0 py-6 pl-4 pr-3 text-sm text-gray-900 sm:w-auto sm:max-w-none sm:pl-0"><%= mentee.mentee_profile&.github %></td>
+    <td class="w-full max-w-0 py-6 pl-4 pr-3 text-sm text-gray-900 sm:w-auto sm:max-w-none sm:pl-0"><%= mentee.mentee_profile&.other_languages %></td>
+    <td class="w-full max-w-0 py-6 pl-4 pr-3 text-sm text-gray-900 sm:w-auto sm:max-w-none sm:pl-0"><%= mentee.mentee_profile&.past_career %></td>
+    <td class="w-full max-w-0 py-6 pl-4 pr-3 text-sm text-gray-900 sm:w-auto sm:max-w-none sm:pl-0"><%= mentee.mentee_profile&.mentoring_goals %></td>
+    <td class="w-full max-w-0 py-6 pl-4 pr-3 text-sm text-gray-900 sm:w-auto sm:max-w-none sm:pl-0"><%= mentee.mentee_profile&.learning_preference %></td>
+    <td class="w-full max-w-0 py-6 pl-4 pr-3 text-sm text-gray-900 sm:w-auto sm:max-w-none sm:pl-0"><%= mentee.mentee_profile&.availability %></td>
+    <td class="w-full max-w-0 py-6 pl-4 pr-3 text-sm text-gray-900 sm:w-auto sm:max-w-none sm:pl-0"><%= mentee.mentee_profile&.desired_industry %></td>
+    <td class="w-full max-w-0 py-6 pl-4 pr-3 text-sm text-gray-900 sm:w-auto sm:max-w-none sm:pl-0"><%= mentee.mentee_profile&.desired_industry %></td>
+    <td class="py-4 pl-3 pr-4 text-right text-sm sm:pr-0">
       <a href="#" class="text-indigo-600 hover:text-indigo-900">View</a>
     </td>
   </tr>
 <% else %>
-  <tr>
-    <td class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-0"><%= mentee.created_at.strftime('%B %d %Y') %></td>
-    <td class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-0">
+  <tr class="hover:bg-red-50 text-xs text-center divide-x divide-gray-200">
+    <td class="w-full max-w-0 py-6 pl-4 pr-3 text-sm text-gray-900 sm:w-auto sm:max-w-none sm:pl-0"><%= mentee.created_at.strftime('%B %d %Y') %></td>
+    <td class="w-full max-w-0 py-4 pl-4 pr-3 text-sm text-gray-900 sm:w-auto sm:max-w-none sm:pl-0">
       <span class="flex flex-col mb-1">
         <%= mentee.full_name %>
         <%= mentee.email %>
       </span>
-      <span class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">Not Onboarded</span>
+      <span class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs text-red-700 ring-1 ring-inset ring-red-600/10">Not Onboarded</span>
     </td>
     <% 16.times do |i| %>
-      <td class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-0">-</td>
+      <td class="w-full max-w-0 py-6 pl-4 pr-3 text-center text-sm text-gray-900 sm:w-auto sm:max-w-none sm:pl-0">-</td>
     <% end %>
-    <td class="py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
+    <td class="py-4 pl-3 pr-4 text-right text-sm sm:pr-0">
       <a href="#" class="text-indigo-600 hover:text-indigo-900">View</a>
     </td>
   </tr>
