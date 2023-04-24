@@ -4,6 +4,8 @@ class Mentees::DashboardController < ApplicationController
 
   def index
     @mentee = current_mentee
+    @mentorship = Mentorship.find_by(mentee_id: @mentee.id)
+    @mentor = @mentorship.present? ? Mentor.find(@mentorship.mentor_id) : nil
   end
 
   private

@@ -7,7 +7,7 @@ class MentorProfile < ApplicationRecord
   validates :city, presence: true
   validates :previous_mentoring, inclusion: {in: [true, false]}
   validates :motivation, presence: true
-  validates :learning_preference, presence: true
+  validates :learning_preferences, presence: true
   validates :industry_expertise, presence: true
   validates :specific_interests, presence: true
   validates :availability, presence: true

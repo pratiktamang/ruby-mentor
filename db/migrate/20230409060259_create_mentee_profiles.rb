@@ -14,7 +14,7 @@ class CreateMenteeProfiles < ActiveRecord::Migration[7.0]
       t.string :other_languages
       t.string :past_career
       t.text :mentoring_goals
-      t.string :learning_preference
+      t.string :learning_preferences
       t.text :availability, array: true, default: []
       t.string :desired_industry
       t.text :specific_interests

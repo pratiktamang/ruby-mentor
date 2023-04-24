@@ -10,8 +10,7 @@ class Admins::DashboardController < ApplicationController
     mentees = Mentee.all
 
     matching_service = MatchingService.new(mentors, mentees)
-    @matched_pairs = matching_service.perform
-
-    render "admins/matches/index"
+    matching_service.perform
+    render json: {success: true}
   end
 end

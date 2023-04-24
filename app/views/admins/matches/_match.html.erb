@@ -1,0 +1,40 @@
+<tr>
+  <td>
+    <span class="flex flex-col">
+      <p class="font-semibold"><%= mentee.full_name %></p>
+      <p><%= mentee.email %></p>
+      <p><%= mentee.country %></p>
+    </span>
+  </td>
+
+  <% if mentor %>
+    <td>
+    <span class="flex flex-col p-1">
+      <p class="font-semibold"><%= mentor.full_name %></p>
+      <p><%= mentor.email %></p>
+      <p><%= mentor.country %></p>
+    </span>
+  </td>
+  <% else %>
+    <td>No mentor found</td>
+  <% end %>
+
+  <td class="text-center"><%= match_details[:compatibility_score] %></td>
+
+  <td><%= (match_details[:specific_interests_overlap] || []).join(', ') %></td>
+
+  <td>
+    <span class="flex flex-col">
+      <p>Mentor: <%#= mentor.city %></p>
+      <p>Mentee: <%#= mentee.city %></p>
+    </span>
+  </td>
+
+  <td>
+    <span class="flex flex-row">
+      <p class="mr-2"><%= link_to 'Approve', "#" %>
+      <p>|</p>
+      <p class="ml-2"> <%= link_to 'Change', "#" %></p>
+    </span>
+  </td>
+</tr>

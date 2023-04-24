@@ -7,6 +7,15 @@
         <%= mentee.email %>
       </span>
     </td>
+    <% mentorship = Mentorship.find_by(mentee_id: mentee.id) %>
+    <td class="w-full max-w-0 py-6 pl-4 pr-3 text-sm text-gray-900 sm:w-auto sm:max-w-none sm:pl-0">
+      <% if mentorship %>
+        <% mentor = Mentor.find(mentorship.mentor_id) %>
+        <%= mentor.full_name %>
+      <% else %>
+        No mentor assigned
+      <% end %>
+    </td>
     <td class="w-full max-w-0 py-6 pl-4 pr-3 text-sm text-gray-900 sm:w-auto sm:max-w-none sm:pl-0"><%= mentee.mentee_profile.created_at.strftime('%B %d %Y') %></td>
     <td class="w-full max-w-0 py-6 pl-4 pr-3 text-sm text-gray-900 sm:w-auto sm:max-w-none sm:pl-0"><%= mentee.mentee_profile&.country %></td>
     <td class="w-full max-w-0 py-6 pl-4 pr-3 text-sm text-gray-900 sm:w-auto sm:max-w-none sm:pl-0"><%= mentee.mentee_profile&.city %></td>
@@ -19,7 +28,7 @@
     <td class="w-full max-w-0 py-6 pl-4 pr-3 text-sm text-gray-900 sm:w-auto sm:max-w-none sm:pl-0"><%= mentee.mentee_profile&.other_languages %></td>
     <td class="w-full max-w-0 py-6 pl-4 pr-3 text-sm text-gray-900 sm:w-auto sm:max-w-none sm:pl-0"><%= mentee.mentee_profile&.past_career %></td>
     <td class="w-full max-w-0 py-6 pl-4 pr-3 text-sm text-gray-900 sm:w-auto sm:max-w-none sm:pl-0"><%= mentee.mentee_profile&.mentoring_goals %></td>
-    <td class="w-full max-w-0 py-6 pl-4 pr-3 text-sm text-gray-900 sm:w-auto sm:max-w-none sm:pl-0"><%= mentee.mentee_profile&.learning_preference %></td>
+    <td class="w-full max-w-0 py-6 pl-4 pr-3 text-sm text-gray-900 sm:w-auto sm:max-w-none sm:pl-0"><%= mentee.mentee_profile&.learning_preferences %></td>
     <td class="w-full max-w-0 py-6 pl-4 pr-3 text-sm text-gray-900 sm:w-auto sm:max-w-none sm:pl-0"><%= mentee.mentee_profile&.availability %></td>
     <td class="w-full max-w-0 py-6 pl-4 pr-3 text-sm text-gray-900 sm:w-auto sm:max-w-none sm:pl-0"><%= mentee.mentee_profile&.desired_industry %></td>
     <td class="w-full max-w-0 py-6 pl-4 pr-3 text-sm text-gray-900 sm:w-auto sm:max-w-none sm:pl-0"><%= mentee.mentee_profile&.desired_industry %></td>

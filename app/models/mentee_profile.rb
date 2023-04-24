@@ -8,7 +8,7 @@ class MenteeProfile < ApplicationRecord
   validates :start_source, presence: true
   validates :underrepresented_group, presence: true
   validates :mentoring_goals, presence: true
-  validates :learning_preference, presence: true
+  validates :learning_preferences, presence: true
   validates :desired_industry, presence: true
   validates :specific_interests, presence: true
   validates :availability, presence: true

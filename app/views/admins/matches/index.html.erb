@@ -1,42 +1,103 @@
 <%= render "admins/shared/skeleton" do %>
   <%= turbo_frame_tag "admin_content" do %>
-    <h1>Matches</h1>
+    <div class="flex flex-row">
+      <%= button_to 'Run Match Service', admins_run_match_service_path, method: :post,
+          class: "mt-2 rounded-md bg-white py-2 px-3 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 ml-2" %>
+      <%= button_to 'Approve Matches', admins_approve_matches_path, method: :post,
+        class: "mt-2  rounded-md bg-white py-2 px-3 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 ml-2" %>
+    </div>
     <table class="min-w-full divide-y divide-gray-300">
       <thead>
         <tr>
           <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Mentee</th>
           <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell">Mentor</th>
-          <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell">Compatibility Score</th>
-          <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell">Common Interests</th>
-          <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell">Same Country</th>
-          <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:table-cell">Same City</th>
-          <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:table-cell">mentor info</th>
-          <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:table-cell">mentee info</th>
+          <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell">Match Reason</th>
+          <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:table-cell">City</th>
           <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Actions</th>
         </tr>
       </thead>
-      <tbody class="divide-y divide-gray-200 bg-white">
-        <% @matched_pairs.each do |match| %>
+      <tbody class="divide-y divide-gray-200 bg-white text-sm">
+        <% @mentorships.each do |mentorship| %>
+          <% mentee = Mentee.find(mentorship.mentee_id) %>
+          <% mentor = Mentor.find(mentorship.mentor_id) %>
           <tr>
-            <td><%= match[:mentee].full_name %></td>
-            <td><%= match[:mentor].full_name %></td>
-            <td><%= match[:match_details][:compatibility_score] %></td>
-            <td><%= match[:match_details][:specific_interests_overlap].join(', ') %></td>
-            <td><%= match[:match_details][:same_country] ? 'Yes' : 'No' %></td>
-            <td><%= match[:match_details][:same_city] ? 'Yes' : 'No' %></td>
-            <td><%= match[:mentor].city %>, <%= match[:mentor].country %></td>
-            <td><%= match[:mentee].city %>, <%= match[:mentee].country %></td>
             <td>
-              <%# <%= link_to 'Edit', edit_admin_match_path(match[:mentee].id) %1> | %>
-              <%# <%= link_to 'Delete', admin_match_path(match[:mentee].id), method: :delete, data: { confirm: 'Are you sure?' } %1> %>
-              <%= link_to 'Edit', "#" %> |
-              <%= link_to 'Delete', "#" %>
+              <span class="flex flex-col">
+                <p class="font-semibold"><%= mentee.full_name %></p>
+                <p><%= mentee.email %></p>
+                <p><%= mentee.country %></p>
+              </span>
+            </td>
+
+            <% if mentor %>
+              <td>
+                <span class="flex flex-col p-1">
+                  <p class="font-semibold"><%= mentor.full_name %></p>
+                  <p><%= mentor.email %></p>
+                  <p><%= mentor.country %></p>
+                </span>
+              </td>
+            <% else %>
+              <td>No mentor found</td>
+            <% end %>
+
+            <% match_reasons = JSON.parse(mentorship.match_reasons) %>
+            <td>
+              <table class="text-sm">
+                <tr>
+                  <td class="font-semibold pr-2">Compatibility Score:</td>
+                  <td><%= match_reasons[0] %></td>
+                </tr>
+                <tr>
+                  <td class="font-semibold pr-2">Country Match:</td>
+                  <td><%= match_reasons[1]["country_match"] ? "Yes" : "No" %></td>
+                </tr>
+                <tr>
+                  <td class="font-semibold pr-2">City Match:</td>
+                  <td><%= match_reasons[1]["city_match"] ? "Yes" : "No" %></td>
+                </tr>
+                <tr>
+                  <td class="font-semibold pr-2">Common Availability:</td>
+                  <td><%= match_reasons[1]["common_availability"].join(", ") %></td>
+                </tr>
+                <tr>
+                  <td class="font-semibold pr-2">Availability Score:</td>
+                  <td><%= match_reasons[1]["availability_score"] %></td>
+                </tr>
+                <tr>
+                  <td class="font-semibold pr-2">Industry Match:</td>
+                  <td><%= match_reasons[1]["industry_match"] ? "Yes" : "No" %></td>
+                </tr>
+                <tr>
+                  <td class="font-semibold pr-2">Specific Interests Overlap:</td>
+                  <td><%= match_reasons[1]["specific_interests_overlap"].join(", ") %></td>
+                </tr>
+                <tr>
+                  <td class="font-semibold pr-2">Specific Interests Score:</td>
+                  <td><%= match_reasons[1]["specific_interests_score"] %></td>
+                </tr>
+                <tr>
+                  <td class="font-semibold pr-2">Total Score:</td>
+                  <td><%= match_reasons[1]["total_score"] %></td>
+                </tr>
+              </table>
+            </td>
+            <td>
+              <span class="flex flex-row">
+                <p class="mr-2"><%= link_to 'Approve', "#" %>
+                <p>|</p>
+                <p class="ml-2"> <%= link_to 'Change', "#" %></p>
+              </span>
             </td>
           </tr>
         <% end %>
       </tbody>
     </table>
-    <%= button_to 'Run Match Service', admins_run_match_service_path, method: :post %>
-    <%= button_to 'Approve Matches', admins_approve_matches_path, method: :post %>
+    <div class="flex justify-center mt-4 mb-2  mr-[256px]">
+      <% position ||= 'top' %>
+      <nav class="pagy-nav my-4 text-center" role="navigation" aria-label="pager <%= position %>">
+          <%== pagy_nav(@pagy) if @pagy.pages > 1 %>
+      </nav>
+    </div>
   <% end %>
 <% end %>
