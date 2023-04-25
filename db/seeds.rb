@@ -68,32 +68,40 @@ def seed_onboarded_mentors
   end
 end
 
-def seed_mentor_profiles
-  mentors = Mentor.all
-  years = [1990, 1994, 1995, 1998, 2002, 2003, 2004, 2008, 2012, 2020].map { |year| Date.new(year) }
+def common_profile_attributes
   learning_preferences = ["visual", "auditory", "kinesthetic", "social", "reading", "solitary"]
   days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
   countries = ["UK", "USA", "France", "Brazil", "Ukraine", "Poland", "Japan"]
   areas = ["rails", "web-dev", "dev ops", "machine learning"]
   languages = ["English", "French", "Spanish", "German", "Russian", "Japanese", "Chinese"]
 
+  {
+    country: countries.sample,
+    city: Faker::Address.city,
+    twitter: Faker::Internet.user_name,
+    github: Faker::Internet.user_name,
+    personal_site: Faker::Internet.url,
+    learning_preferences: learning_preferences.sample,
+    other_languages: languages.sample,
+    availability: days.sample(rand(1..days.length)),
+    specific_interests: areas.sample
+  }
+end
+
+def seed_mentor_profiles
+  mentors = Mentor.all
+  years = [1990, 1994, 1995, 1998, 2002, 2003, 2004, 2008, 2012, 2020].map { |year| Date.new(year) }
+
   mentors.each do |mentor|
     mentor_profile = mentor.create_mentor_profile(
-      company_url: Faker::Internet.url,
-      ruby_start_year: years.sample,
-      country: countries.sample,
-      city: Faker::Address.city,
-      twitter: Faker::Internet.user_name,
-      github: Faker::Internet.user_name,
-      personal_site: Faker::Internet.url,
-      past_workplaces: Faker::Lorem.sentence,
-      previous_mentoring: [true, false].sample,
-      motivation: Faker::Lorem.sentence,
-      learning_preferences: learning_preferences.sample,
-      other_languages: languages.sample,
-      availability: days.sample(rand(1..days.length)),
-      industry_expertise: Faker::Lorem.sentence,
-      specific_interests: areas.sample
+      common_profile_attributes.merge(
+        company_url: Faker::Internet.url,
+        ruby_start_year: years.sample,
+        past_workplaces: Faker::Lorem.sentence,
+        previous_mentoring: [true, false].sample,
+        motivation: Faker::Lorem.sentence,
+        industry_expertise: Faker::Lorem.sentence
+      )
     )
     mentor_profile.save!
   end
@@ -101,30 +109,18 @@ end
 
 def seed_mentee_profiles
   mentees = Mentee.all
-  learning_preferences = ["visual", "auditory", "kinesthetic", "social", "reading", "solitary"]
-  days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-  countries = ["UK", "USA", "France", "Brazil", "Ukraine", "Poland", "Japan"]
-  areas = ["rails", "web-dev", "dev ops", "machine learning"]
-  languages = ["English", "French", "Spanish", "German", "Russian", "Japanese", "Chinese"]
 
   mentees.each do |mentee|
     mentee_profile = mentee.build_mentee_profile(
-      country: countries.sample,
-      city: Faker::Address.city,
-      workplace_url: Faker::Internet.url,
-      writing_ruby: [true, false].sample,
-      start_source: Faker::Lorem.sentence,
-      underrepresented_group: Faker::Lorem.sentence,
-      twitter: Faker::Internet.user_name,
-      github: Faker::Internet.user_name,
-      personal_site: Faker::Internet.url,
-      other_languages: languages.sample,
-      past_career: Faker::Lorem.sentence,
-      mentoring_goals: Faker::Lorem.sentence,
-      learning_preferences: learning_preferences.sample,
-      availability: days.sample(rand(1..days.length)),
-      desired_industry: Faker::Lorem.sentence,
-      specific_interests: areas.sample
+      common_profile_attributes.merge(
+        workplace_url: Faker::Internet.url,
+        writing_ruby: [true, false].sample,
+        start_source: Faker::Lorem.sentence,
+        underrepresented_group: Faker::Lorem.sentence,
+        past_career: Faker::Lorem.sentence,
+        mentoring_goals: Faker::Lorem.sentence,
+        desired_industry: Faker::Lorem.sentence
+      )
     )
     mentee_profile.save!
   end

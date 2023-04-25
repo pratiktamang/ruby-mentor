@@ -87,7 +87,6 @@ class MatchingService
   end
 
   def compatibility_score(mentor, mentee)
-    puts "compatibility_score for mentor: #{mentor.id} and mentee: #{mentee.id}"
     return -1, {} unless mentor.respond_to?(:mentor_profile) && mentee.respond_to?(:mentee_profile)
 
     mentor_profile = mentor.mentor_profile
