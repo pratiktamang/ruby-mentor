@@ -70,10 +70,10 @@ end
 
 def common_profile_attributes
   learning_preferences = ["visual", "auditory", "kinesthetic", "social", "reading", "solitary"]
-  days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-  countries = ["UK", "USA", "France", "Brazil", "Ukraine", "Poland", "Japan"]
+  days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
+  countries = ["uk", "usa", "france", "brazil", "ukraine", "poland", "japan"]
   areas = ["rails", "web-dev", "dev ops", "machine learning"]
-  languages = ["English", "French", "Spanish", "German", "Russian", "Japanese", "Chinese"]
+  languages = ["english", "french", "spanish", "german", "russian", "japanese", "chinese"]
 
   {
     country: countries.sample,
