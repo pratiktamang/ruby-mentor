@@ -54,4 +54,8 @@ class Mentee < ApplicationRecord
   def country
     mentee_profile.country
   end
+
+  def mentor
+    mentorships.first.mentor if mentorships.count > 0
+  end
 end

@@ -1,9 +1,10 @@
 class MentorshipsController < ApplicationController
-  before_action :set_mentorship, only: %i[ show edit update destroy ]
+  before_action :set_mentorship, only: %i[show edit update destroy]
 
   # GET /mentorships or /mentorships.json
   def index
-    @mentorships = Mentorship.all
+    @mentorships = current_mentee.mentorships
+    @mentor = current_mentee.mentor
   end
 
   # GET /mentorships/1 or /mentorships/1.json
@@ -58,13 +59,14 @@ class MentorshipsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_mentorship
-      @mentorship = Mentorship.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def mentorship_params
-      params.require(:mentorship).permit(:mentor_id, :mentee_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_mentorship
+    @mentorship = Mentorship.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def mentorship_params
+    params.require(:mentorship).permit(:mentor_id, :mentee_id)
+  end
 end
